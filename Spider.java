@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.awt.*;
 
 public class Spider {
 
@@ -37,5 +38,21 @@ public class Spider {
         if(this.direction == "west"){
             this.x -= Cell.pixelSize;
         }
+    }
+
+    public void draw(Graphics g){
+        // g.setColor(Color.WHITE);
+        // g.drawOval(this.x, this.y,8,8);
+
+        g.setColor(Color.YELLOW);
+        g.fillOval(this.x, this.y, 10, 10);
+        g.setColor(Color.BLACK);
+        int leftEyeX = this.x + 6;
+        int leftEyeY = this.y + 6;
+        g.fillOval(leftEyeX, leftEyeY, 3, 3);
+        int rightEyeX = this.x + 11;
+        int rightEyeY = this.y + 6;
+        g.fillOval(rightEyeX, rightEyeY, 3, 3);
+        g.drawArc(this.x + 5, this.y + 7, 10, 6, 0, -180);
     }
 }
