@@ -27,32 +27,40 @@ public class Spider {
 
     public void move(){
         if(this.direction == "north"){
-            this.y -= Cell.pixelSize;
+            this.y -= 50;
         }
         if(this.direction == "east"){
-            this.x += Cell.pixelSize;
+            this.x += 50;
         }
         if(this.direction == "south"){
-            this.y += Cell.pixelSize;
+            this.y += 50;
         }
         if(this.direction == "west"){
-            this.x -= Cell.pixelSize;
+            this.x -= 50;
         }
     }
 
     public void draw(Graphics g){
-        // g.setColor(Color.WHITE);
-        // g.drawOval(this.x, this.y,8,8);
-
-        g.setColor(Color.YELLOW);
-        g.fillOval(this.x, this.y, 10, 10);
         g.setColor(Color.BLACK);
-        int leftEyeX = this.x + 6;
-        int leftEyeY = this.y + 6;
-        g.fillOval(leftEyeX, leftEyeY, 3, 3);
-        int rightEyeX = this.x + 11;
-        int rightEyeY = this.y + 6;
-        g.fillOval(rightEyeX, rightEyeY, 3, 3);
-        g.drawArc(this.x + 5, this.y + 7, 10, 6, 0, -180);
+        g.fillOval(x, y, 10, 10);
+        g.setColor(Color.RED);
+        int leftEyeX = this.x + 3;
+        int leftEyeY = this.y + 3;
+        g.fillOval(leftEyeX, leftEyeY, 2, 2);
+        int rightEyeX = this.x + 7;
+        int rightEyeY = this.y + 3;
+        g.fillOval(rightEyeX, rightEyeY, 2, 2);
+        g.setColor(Color.BLACK);
+        int legStartY = this.y + 10;
+        int legSpacing = 2;
+        int legLength = 10;
+        for (int i = 0; i < 4; i++) {
+            int legX = this.x - 2 - i * legSpacing;
+            g.drawLine(legX, legStartY, legX - legLength, legStartY + legLength);
+        }
+        for (int i = 0; i < 4; i++) {
+            int legX = this.x + 12 + i * legSpacing;
+            g.drawLine(legX, legStartY, legX + legLength, legStartY + legLength);
+        }
     }
 }
