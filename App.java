@@ -1,5 +1,6 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.event.ActionEvent;
@@ -9,6 +10,8 @@ import java.awt.event.KeyListener;
 import java.io.File;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.*;
 
 public class App extends JFrame {
@@ -66,9 +69,36 @@ public class App extends JFrame {
             //mainPanel.setPreferredSize(new Dimension(300, 300));
            
             JPanel worldPanel = new JPanel(new GridLayout(5,5));
+            int borderWidth = 1; 
+            Color borderColor = Color.WHITE; 
+            Border border = BorderFactory.createMatteBorder(borderWidth, borderWidth, 0, 0, borderColor);
+
+            for (int i = 0; i < 25; i++) {
+                JPanel cell = new JPanel();
+                cell.setBorder(border);
+                cell.setBackground(Color.BLACK);
+                worldPanel.add(cell);
+            }
+            /* 
+                @Override
+                protected void paintComponent(Graphics g){
+                    super.paintComponent(g);
+                    drawGridLines(g);
+                }
+            };
+            worldPanel.addComponentListener(new ComponentAdapter() {
+                @Override
+                public void componentResized(ComponentEvent e) {
+                    worldPanel.repaint(); // Trigger a repaint when the panel is resized
+                }
+            });
+            */
+
+
             worldPanel.setBackground(Color.BLACK);
             worldPanel.setPreferredSize(new Dimension(400, 400));
             mainPanel.add(worldPanel);
+
 
             JPanel buttonPanel = new JPanel();
             buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS)); // Use BoxLayout with Y_AXIS
@@ -83,11 +113,13 @@ public class App extends JFrame {
             playButton.setBackground(Color.GREEN);
             playButton.setOpaque(true);
 
+
             JButton resetButton = new JButton("Reset");
             //resetButton.setPreferredSize(new Dimension(50, 70));
             resetButton.setFont(resetButton.getFont().deriveFont(20f));
             resetButton.setBackground(Color.BLUE);
             resetButton.setOpaque(true);
+
 
             buttonPanel.add(playButton);
             buttonPanel.add(resetButton);
@@ -115,12 +147,9 @@ public class App extends JFrame {
             JPanel trashPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
             trashPanel.setBackground(Color.WHITE);
             trashPanel.add(trashLabel);
-
-            // Add the inner JPanel to the bottom-left of the workspace panel
             workSpacePanel.add(trashPanel, BorderLayout.SOUTH);
-
-
             }
+
             catch(Exception e){
                 e.printStackTrace();
             }
@@ -136,9 +165,24 @@ public class App extends JFrame {
             getContentPane().add(topPanel, BorderLayout.NORTH);
             getContentPane().add(mainPanel, BorderLayout.CENTER);
             pack(); 
-            
-
             }
+            /* 
+            public void drawGridLines( Graphics g){
+                int cellWidth = getWidth() / 5; 
+                int cellHeight = getHeight() / 5; 
+                g.setColor(Color.WHITE);
+
+                for(int i=0; i<5;i++){
+                    int x = i * cellWidth;
+                    g.drawLine(x, 0, x, getHeight());
+                }
+                for(int i=0; i<5;i++){
+                    int y = i * cellHeight;
+                    g.drawLine(0, y, getWidth(), y);
+                }
+            }
+            */
+
 }
 
 
