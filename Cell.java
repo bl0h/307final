@@ -1,4 +1,4 @@
-import java.awt.Color;
+import java.awt.*;
 
 public class Cell {
     private int row;
@@ -11,7 +11,7 @@ public class Cell {
     public Cell(int row, int col, Color color) {
         this.row = row;
         this.col = col;
-        this.color = Color.BLACK;
+        this.color = color;
         this.hasDiamond = false;
         this.hasSpider = false;
         this.diamondColor = Color.BLACK;
@@ -56,6 +56,26 @@ public class Cell {
     public void setDiamond(boolean hasDiamond, Color color) {
         this.hasDiamond = hasDiamond;
         this.diamondColor = color;
+    }
+
+    public void drawDiamond(Graphics g, int cellSize) {
+        if (hasDiamond) {
+            int halfCellSize = cellSize / 2;
+            int x = col * cellSize + halfCellSize;
+            int y = row * cellSize + halfCellSize;
+
+            int[] xPoints = {x, x - halfCellSize, x, x + halfCellSize};
+            int[] yPoints = {y - halfCellSize, y, y + halfCellSize, y};
+
+            g.setColor(diamondColor);
+            g.fillPolygon(new Polygon(xPoints, yPoints, 4));
+        }
+    }
+
+    public void draw(Graphics g, int cellSize) {
+        g.setColor(color);
+        g.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
+        drawDiamond(g, cellSize);
     }
 }
 
