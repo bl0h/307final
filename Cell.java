@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Graphics;
 
 public class Cell {
     private int row;
@@ -11,7 +12,7 @@ public class Cell {
     public Cell(int row, int col, Color color) {
         this.row = row;
         this.col = col;
-        this.color = Color.BLACK;
+        this.color = color;
         this.hasDiamond = false;
         this.hasSpider = false;
         this.diamondColor = Color.BLACK;
@@ -56,6 +57,20 @@ public class Cell {
     public void setDiamond(boolean hasDiamond, Color color) {
         this.hasDiamond = hasDiamond;
         this.diamondColor = color;
+    }
+    public void drawRectangle(Graphics g) {
+
+        g.fillRect(col, col, row, col);
+    }
+
+    public void drawDiamond(Graphics g) {
+
+        g.fillPolygon(null, null, col);
+    }
+    public void draw(Graphics g) {
+        g.setColor(color);
+        drawRectangle(g);
+        drawDiamond(g);
     }
 }
 
