@@ -11,11 +11,7 @@ public class WorldPanel extends JPanel{
         setBackground(Color.RED);
         setPreferredSize(new Dimension(400, 400));
         super.paintComponent(g);
-        w.draw(g);
-
-
-
-
+        // w.draw(g);
     }
 
 }
