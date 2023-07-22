@@ -1,8 +1,12 @@
-import java.util.ArrayList;
+public class Block extends ParentBlock{
 
-public class Block {
     private String text;
-    private ArrayList<ParentBlock> blocks;
 
-    
+    public Block(String text){
+        this.text = text;
+    }
+
+    public String getText(){
+        return this.text;
+    }
 }

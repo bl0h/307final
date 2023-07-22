@@ -3,6 +3,7 @@ import java.util.LinkedList;
 public class Datasource {
     private static Datasource datasource = null;
     private LinkedList<Cell> cellList = new LinkedList<Cell>();
+    private LinkedList<ParentBlock> program = new LinkedList<ParentBlock>();
 
     private Datasource(){}
 
@@ -22,5 +23,20 @@ public class Datasource {
         this.cellList = l;
     }
 
+    public void addCell(Cell c){
+        this.cellList.add(c);
+    }
+
+    public void clearCellList(){
+        this.cellList.removeAll(this.cellList);
+    }
+
+    public void addBlock(Block b){
+        this.program.add(b);
+    }
+
+    public void clearProgram(){
+        this.program.removeAll(this.program);
+    }
 
 }

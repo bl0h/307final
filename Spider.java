@@ -63,4 +63,7 @@ public class Spider {
             g.drawLine(legX, legStartY, legX + legLength, legStartY + legLength);
         }
     }
+
+    public void paintCell(World w){
+    }
 }
