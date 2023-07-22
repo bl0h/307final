@@ -30,6 +30,7 @@ public class App extends JFrame {
     }
 
     public App(){
+        /* 
         JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JLabel title = new JLabel();
         title.setText("SPIDER WORLD");
@@ -68,6 +69,7 @@ public class App extends JFrame {
 
         topPanel.add(directionButton);
         topPanel.add(restartButton);
+        */
 
         JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         mainPanel.setBackground(Color.WHITE);
@@ -79,7 +81,7 @@ public class App extends JFrame {
         mainPanel.add(worldPanel);
         mainPanel.add(workAreaPanel);
 
-       
+       /* 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS)); // Use BoxLayout with Y_AXIS
         buttonPanel.setBackground(Color.WHITE);
@@ -92,7 +94,7 @@ public class App extends JFrame {
         //playButton.setPreferredSize(new Dimension(50, 70));
         playButton.setBackground(Color.GREEN);
         playButton.setOpaque(true);
-
+        
 
         JButton resetButton = new JButton("Reset");
         //resetButton.setPreferredSize(new Dimension(50, 70));
@@ -126,16 +128,19 @@ public class App extends JFrame {
         catch(Exception e){
             e.printStackTrace();
         }
-
+        */
+        /* 
         JPanel sidePanel = new JPanel(new BorderLayout());
         sidePanel.setBackground(Color.LIGHT_GRAY);
         sidePanel.setPreferredSize(new Dimension(250, 700));
         mainPanel.add(sidePanel, BorderLayout.SOUTH);
+        */
 
         getContentPane().setLayout(new BorderLayout());
-        getContentPane().add(topPanel, BorderLayout.NORTH);
+        //getContentPane().add(topPanel, BorderLayout.NORTH);
         getContentPane().add(mainPanel, BorderLayout.CENTER);
         pack(); 
+        
         }
 
 }

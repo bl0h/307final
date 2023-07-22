@@ -5,9 +5,10 @@ import java.awt.*;
 public class WorldPanel extends JPanel{
     World w;
 
+
     @Override
     public void paintComponent(Graphics g){
-        setBackground(Color.BLACK);
+        setBackground(Color.RED);
         setPreferredSize(new Dimension(400, 400));
         super.paintComponent(g);
         w.draw(g);
