@@ -74,12 +74,28 @@ public class App extends JFrame {
         JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         mainPanel.setBackground(Color.WHITE);
         //mainPanel.setPreferredSize(new Dimension(300, 300));
-        
-        worldPanel = new WorldPanel();
+        World world = new World(5,5);
+
+        worldPanel = new WorldPanel(world);
         workAreaPanel = new WorkAreaPanel();
 
         mainPanel.add(worldPanel);
         mainPanel.add(workAreaPanel);
+
+        
+        Datasource datasource = Datasource.getInstance();
+        for(int i = 0; i < world.getNumRows() * world.getNumCols(); i++){
+            Cell c;
+            if(i%2 ==0){
+                c = new Cell(i % 5, i / 5, Color.GREEN);
+            }
+            else{                
+                c = new Cell(i % 5, i / 5, Color.BLUE);
+            }
+            datasource.addCell(c);
+        }
+
+        worldPanel.updateDrawing();
 
        /* 
         JPanel buttonPanel = new JPanel();

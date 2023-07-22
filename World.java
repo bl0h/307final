@@ -13,7 +13,7 @@ public class World{
         this.numRows = numRows;
         this.numCols = numCols;
         this.cells = new LinkedList<>();
-        this.cellSize = 50;
+        this.cellSize = 80;
         this.grid = new Cell[numRows][numCols];
     
         for (int row = 0; row < numRows; row++) {
@@ -25,9 +25,18 @@ public class World{
         }
     }
 
+    public int getNumRows() {
+        return numRows;
+    }
+
+    public int getNumCols() {
+        return numCols;
+    }
 
     public void draw(Graphics g) {
-        for (Cell cell : cells) {
+        Datasource d = Datasource.getInstance();
+        this.cells = d.getCellList();
+        for (Cell cell : this.cells) {
             cell.draw(g, cellSize);
         }
     }
