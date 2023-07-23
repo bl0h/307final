@@ -60,12 +60,12 @@ public class Cell {
 
     public void drawDiamond(Graphics g, int cellSize) {
         if (hasDiamond) {
-            int halfCellSize = cellSize / 2;
-            int x = col * cellSize + halfCellSize;
-            int y = row * cellSize + halfCellSize;
+            int diamondSize = cellSize / 8;
+            int x = col * cellSize + (cellSize - diamondSize + 10) / 2;
+            int y = row * cellSize + (cellSize - diamondSize + 10) / 2;
 
-            int[] xPoints = {x, x - halfCellSize, x, x + halfCellSize};
-            int[] yPoints = {y - halfCellSize, y, y + halfCellSize, y};
+            int[] xPoints = {x, x - diamondSize, x, x + diamondSize};
+            int[] yPoints = {y - diamondSize, y, y + diamondSize, y};
 
             g.setColor(diamondColor);
             g.fillPolygon(new Polygon(xPoints, yPoints, 4));

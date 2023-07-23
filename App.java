@@ -92,6 +92,7 @@ public class App extends JFrame {
             else{                
                 c = new Cell(i % 5, i / 5, Color.BLUE);
             }
+            c.setDiamond(true, Color.ORANGE);
             datasource.addCell(c);
         }
 
