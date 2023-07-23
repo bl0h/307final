@@ -83,21 +83,19 @@ public class App extends JFrame {
         mainPanel.add(workAreaPanel);
 
         
-        Datasource datasource = Datasource.getInstance();
-        for(int i = 0; i < world.getNumRows() * world.getNumCols(); i++){
-            Cell c;
-            if(i%2 ==0){
-                c = new Cell(i % 5, i / 5, Color.BLACK);
-            }
-            else{                
-                c = new Cell(i % 5, i / 5, Color.BLACK);
-            }
-            c.setDiamond(true, Color.ORANGE);
-            datasource.addCell(c);
-            c.setSpider();
-        }
-
-        worldPanel.updateDrawing();
+        // Datasource datasource = Datasource.getInstance();
+        // for(int i = 0; i < world.getNumRows() * world.getNumCols(); i++){
+        //     Cell c;
+        //     if(i%2 ==0){
+        //         c = new Cell(i % 5, i / 5, Color.BLACK);
+        //     }
+        //     else{                
+        //         c = new Cell(i % 5, i / 5, Color.BLACK);
+        //     }
+        //     c.setDiamond(true, Color.ORANGE);
+        //     datasource.addCell(c);
+        //     c.setSpider();
+        // }
 
        /* 
         JPanel buttonPanel = new JPanel();

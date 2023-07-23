@@ -8,6 +8,7 @@ public class Cell {
     private boolean hasSpider;
     private Color diamondColor;
 
+
     public Cell(int row, int col, Color color) {
         this.row = row;
         this.col = col;
@@ -37,8 +38,8 @@ public class Cell {
         return hasSpider;
     }
 
-    public void setSpider() {
-        this.hasSpider = true;
+    public void setSpider(boolean b) {
+        hasSpider = b;
     }
 
     public void setHasSpider(boolean hasSpider) {
@@ -47,6 +48,9 @@ public class Cell {
 
     public Color getColor() {
         return color;
+    }
+    public void setColor(Color c) {
+        this.color = c;
     }
 
     public Color getDiamondColor() {

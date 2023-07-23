@@ -12,7 +12,7 @@ public class WorldPanel extends JPanel{
 
     @Override
     public void paintComponent(Graphics g){
-        setBackground(Color.RED);
+        setBackground(Color.BLACK);
         setPreferredSize(new Dimension(400, 400));
         super.paintComponent(g);
         w.draw(g);

@@ -5,6 +5,7 @@ public class Spider {
 
     private int x;
     private int y;
+    private int cellId;
     private String direction; //direction is north, east, south, west
     private String s[] = {"north", "east", "south", "west"};
 
@@ -18,6 +19,21 @@ public class Spider {
 
     public int getY(){return this.y;}
 
+    public int getCellId(){
+        return this.cellId;
+    }
+
+
+    public void setPosition(int row, int col){
+        int x = 25;
+        int y = 25;
+        x += 80 * col;
+        y += 80 * row;
+        this.x = x;
+        this.y = y;
+        this.cellId = (row * 5) + col;
+    }
+
     public void turn(){
         int size = 4;
         Arrays.asList(this.s).indexOf(this.direction);
@@ -27,16 +43,20 @@ public class Spider {
 
     public void move(){
         if(this.direction == "north"){
-            this.y -= 50;
+            this.y -= 40;
+            this.cellId -= 5;
         }
         if(this.direction == "east"){
-            this.x += 50;
+            this.x += 40;
+            this.cellId ++;
         }
         if(this.direction == "south"){
-            this.y += 50;
+            this.y += 40;
+            this.cellId += 5;
         }
         if(this.direction == "west"){
-            this.x -= 50;
+            this.x -= 40;
+            this.cellId --;
         }
     }
 
