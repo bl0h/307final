@@ -14,7 +14,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.*;
 
-public class App extends JFrame {
+public class App extends JFrame implements ActionListener{
 
     //comparing to the shapeApp lab, this WorldPanel and WorkAreaPanel classes = DrawArea and this App.java class = Main.java
 
@@ -30,7 +30,7 @@ public class App extends JFrame {
     }
 
     public App(){
-        /* 
+        
         JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JLabel title = new JLabel();
         title.setText("SPIDER WORLD");
@@ -38,7 +38,8 @@ public class App extends JFrame {
         title.setVisible(true);
         Font titleFont = new Font("Arial", Font.PLAIN, 22);
         title.setFont(titleFont);
-
+    
+        
         JLabel level = new JLabel();
         level.setText("Level");
         level.setVisible(true);
@@ -62,6 +63,7 @@ public class App extends JFrame {
         JButton directionButton = new JButton("Directions");
         directionButton.setFont(directionButton.getFont().deriveFont(20f));
         directionButton.setPreferredSize(new Dimension(120, 70));
+        directionButton.addActionListener(e -> showDirectionsPopup());
 
         JButton restartButton = new JButton("Restart Level");
         restartButton.setFont(restartButton.getFont().deriveFont(20f));
@@ -69,7 +71,7 @@ public class App extends JFrame {
 
         topPanel.add(directionButton);
         topPanel.add(restartButton);
-        */
+        
 
         JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         mainPanel.setBackground(Color.WHITE);
@@ -79,7 +81,28 @@ public class App extends JFrame {
         worldPanel = new WorldPanel(world);
         workAreaPanel = new WorkAreaPanel(world, worldPanel);
 
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS)); // Use BoxLayout with Y_AXIS
+        buttonPanel.setBackground(Color.WHITE);
+        buttonPanel.setPreferredSize(new Dimension(100, 100));
+        mainPanel.add(buttonPanel);
+
+        JButton playButton = new JButton("Play");
+        playButton.setFont(playButton.getFont().deriveFont(20f));
+        playButton.setBackground(Color.GREEN);
+        playButton.setOpaque(true);
+        
+
+        JButton resetButton = new JButton("Reset");
+        resetButton.setFont(resetButton.getFont().deriveFont(20f));
+        resetButton.setBackground(Color.BLUE);
+        resetButton.setOpaque(true);
+
+        buttonPanel.add(playButton);
+        buttonPanel.add(resetButton);
+
         mainPanel.add(worldPanel);
+        mainPanel.add(buttonPanel);
         mainPanel.add(workAreaPanel);
 
         
@@ -97,31 +120,9 @@ public class App extends JFrame {
         //     c.setSpider();
         // }
 
-       /* 
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS)); // Use BoxLayout with Y_AXIS
-        buttonPanel.setBackground(Color.WHITE);
-        buttonPanel.setPreferredSize(new Dimension(100, 100));
-        mainPanel.add(buttonPanel);
-
-
-        JButton playButton = new JButton("Play");
-        playButton.setFont(playButton.getFont().deriveFont(20f));
-        //playButton.setPreferredSize(new Dimension(50, 70));
-        playButton.setBackground(Color.GREEN);
-        playButton.setOpaque(true);
+       
         
-
-        JButton resetButton = new JButton("Reset");
-        //resetButton.setPreferredSize(new Dimension(50, 70));
-        resetButton.setFont(resetButton.getFont().deriveFont(20f));
-        resetButton.setBackground(Color.BLUE);
-        resetButton.setOpaque(true);
-
-
-        buttonPanel.add(playButton);
-        buttonPanel.add(resetButton);
-
+            /* 
 
         try{
         File imageFile = new File("trashcan.png");
@@ -153,11 +154,44 @@ public class App extends JFrame {
         */
 
         getContentPane().setLayout(new BorderLayout());
-        //getContentPane().add(topPanel, BorderLayout.NORTH);
+        getContentPane().add(topPanel, BorderLayout.NORTH);
         getContentPane().add(mainPanel, BorderLayout.CENTER);
         pack(); 
         
         }
+
+        public void actionPerformed(ActionEvent e){
+
+
+
+        }
+
+        private void showDirectionsPopup() {
+            String directionsText = "Welcome to Spider World!"
+            + " Use the MOVE and TURN blocks to guide the spider around her room."
+            +" The PAINT block paints the square the spider is standing on." 
+            +" Can you guide the spider to paint the squares marked with diamonds?";
+
+            JDialog popupDialog = new JDialog(this, "Directions", true);
+            popupDialog.setLayout(new BorderLayout());
+
+            JTextArea content = new JTextArea(directionsText);
+            content.setFont(content.getFont().deriveFont(20f));
+            content.setLineWrap(true);
+            content.setWrapStyleWord(true);
+            popupDialog.add(content, BorderLayout.CENTER);
+
+            JButton closeButton = new JButton("Close");
+            closeButton.addActionListener(e -> {
+                popupDialog.dispose(); 
+            });
+            popupDialog.add(closeButton, BorderLayout.SOUTH);
+            popupDialog.setSize(400, 300);
+            popupDialog.setLocationRelativeTo(this);
+            popupDialog.setVisible(true);
+        }
+    
+
 
 }
 
