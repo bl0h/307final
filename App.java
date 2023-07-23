@@ -87,10 +87,10 @@ public class App extends JFrame {
         for(int i = 0; i < world.getNumRows() * world.getNumCols(); i++){
             Cell c;
             if(i%2 ==0){
-                c = new Cell(i % 5, i / 5, Color.GREEN);
+                c = new Cell(i % 5, i / 5, Color.BLACK);
             }
             else{                
-                c = new Cell(i % 5, i / 5, Color.BLUE);
+                c = new Cell(i % 5, i / 5, Color.BLACK);
             }
             c.setDiamond(true, Color.ORANGE);
             datasource.addCell(c);
