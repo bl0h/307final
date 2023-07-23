@@ -36,8 +36,21 @@ public class World{
     public void draw(Graphics g) {
         Datasource d = Datasource.getInstance();
         this.cells = d.getCellList();
+        int gridWidth = numCols * cellSize;
+        int gridHeight = numRows * cellSize;
+
         for (Cell cell : this.cells) {
             cell.draw(g, cellSize);
+        }
+
+        g.setColor(Color.GRAY);
+        for (int row = 0; row <= numRows; row++) {
+            int y = row * cellSize;
+            g.drawLine(0, y, gridWidth, y);
+        }
+        for (int col = 0; col <= numCols; col++) {
+            int x = col * cellSize;
+            g.drawLine(x, 0, x, gridHeight);
         }
     }
 
