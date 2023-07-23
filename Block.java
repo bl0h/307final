@@ -32,9 +32,12 @@ public class Block extends ParentBlock{
         int textHeight = fontMetrics.getHeight();
         int rectWidth = textWidth + 20; // Add some padding for the rectangle
         int rectHeight = textHeight + 10; // Add some padding for the rectangle
-        g.drawRect(this.x, this.y, rectWidth, rectHeight);
+        Color lightPastelGreen = new Color(144, 238, 144);
+        g.setColor(lightPastelGreen);
+        g.fillRect(this.x, this.y, rectWidth, rectHeight);
         int textX = this.x + (rectWidth - textWidth) / 2;
         int textY = this.y + (rectHeight - textHeight) / 2 + fontMetrics.getAscent();
-        g.drawString("this.text", textX, textY);
+        g.setColor(Color.BLACK);
+        g.drawString(this.text, textX, textY);
     }
 }

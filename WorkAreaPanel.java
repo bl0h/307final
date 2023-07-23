@@ -7,8 +7,9 @@ import javax.swing.border.LineBorder;
 import java.awt.Graphics;
 
 public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionListener{
-
     
+    Block move = new Block("move", 600, 100);
+
 
     @Override
     public void paintComponent(Graphics g){
@@ -20,12 +21,15 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
         
         g.setColor(Color.LIGHT_GRAY);
         g.fillRect(550, 0, 250, 700);
-        
+
+        move.draw(g);
     }
 
 
     @Override
 	public void mousePressed(MouseEvent e) {
+
+		
 	}
 	
 	@Override
