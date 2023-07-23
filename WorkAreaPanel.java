@@ -4,6 +4,8 @@ import java.awt.event.MouseEvent;
 import javax.swing.JPanel;
 import java.awt.*;
 import javax.swing.border.LineBorder;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 
 public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionListener{
     
@@ -16,7 +18,7 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
 
     private int x, y, x2, y2;
     String blockName = "";
-    private boolean moveSelected;
+    private boolean moveSelected, turnSelected, paintSelected;
 
 
     public WorkAreaPanel(World world, WorldPanel worldPanel){
@@ -24,7 +26,12 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
             addMouseMotionListener(this);
             this.world = world;
             this.worldPanel = worldPanel;
-        }
+
+
+            //String[] colors = {"Red", "Green", "Blue"};
+            //JComboBox list = new JComboBox(colors);
+            //add(list);
+    }
 
 
     @Override
@@ -52,30 +59,23 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
     @Override
 	public void mousePressed(MouseEvent e) {
         x = e.getX();
-        y = e.getY();
-
-        // System.out.println("MouseX"+ x);
-        // System.out.println("MouseY"+ y);
+        y = e.getY();  
 
         if(x > 600 && x<675 && y>100 && y<125){
             System.out.println("inside move");
             blockName = "move";
             moveSelected = true;
         }
-        // if(x > 600 && x<675 && y>200 && y<225){
-        //     System.out.println("inside turn");
-        //     blockName = "turn";
-        //     blockSelected = true;
-
-        // }
-
-        // if(x > 600 && x<675 && y>300 && y<325){
-        //     System.out.println("inside paint");
-        //      blockName = "paint";
-        //      blockSelected = true;
-
-        // }
-
+         if(x > 600 && x<675 && y>200 && y<225){
+             System.out.println("inside turn");
+             blockName = "turn";
+             turnSelected = true;
+        }
+         if(x > 600 && x<675 && y>300 && y<325){
+             System.out.println("inside paint");
+              blockName = "paint";
+              paintSelected = true;
+        }
 	}
 
 	
@@ -83,9 +83,6 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
 	public void mouseReleased(MouseEvent e) {
         x2= e.getX();
         y2 = e.getY();
-
-        // System.out.println("MouseX"+ x2);
-        // System.out.println("MouseY"+ y2);
 
         if(x2 < 500){
             if(moveSelected){
@@ -96,10 +93,26 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
                 world.applySpiderCommands();
                 worldPanel.repaint();
             }
+            if(turnSelected){
+                Block addedBlock = new Block(blockName, x2, y2);
+                Datasource d = Datasource.getInstance();
+                d.addBlock(addedBlock);
+                turnSelected = false;
+                world.applySpiderCommands();
+                worldPanel.repaint();
+            }
+            if(paintSelected){
+                Block addedBlock = new Block(blockName, x2, y2);
+                Datasource d = Datasource.getInstance();
+                d.addBlock(addedBlock);
+                paintSelected = false;
+                world.applySpiderCommands();
+                worldPanel.repaint();
+            }
         }
 		repaint();
 	}
-	
+
 	@Override
 	public void mouseDragged(MouseEvent e) {
         x2= e.getX();
