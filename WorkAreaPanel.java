@@ -62,17 +62,14 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
         y = e.getY();  
 
         if(x > 600 && x<675 && y>100 && y<125){
-            System.out.println("inside move");
             blockName = "move";
             moveSelected = true;
         }
          if(x > 600 && x<675 && y>200 && y<225){
-             System.out.println("inside turn");
              blockName = "turn";
              turnSelected = true;
         }
          if(x > 600 && x<675 && y>300 && y<325){
-             System.out.println("inside paint");
               blockName = "paint";
               paintSelected = true;
         }
