@@ -9,7 +9,8 @@ import java.awt.Graphics;
 public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionListener{
     
     Block move = new Block("move", 600, 100);
-
+	Block turn = new Block("turn", 600, 200);
+	Block paint = new Block("paint", 600, 300);
 
     @Override
     public void paintComponent(Graphics g){
@@ -23,13 +24,15 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
         g.fillRect(550, 0, 250, 700);
 
         move.draw(g);
+		turn.draw(g);
+		paint.draw(g);
     }
 
 
     @Override
 	public void mousePressed(MouseEvent e) {
 
-		
+
 	}
 	
 	@Override

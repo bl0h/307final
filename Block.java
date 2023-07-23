@@ -26,12 +26,12 @@ public class Block extends ParentBlock{
 
     public void draw(Graphics g){
         g.setColor(Color.BLACK);
-        g.setFont(new Font("Arial", Font.PLAIN, 12));
+        g.setFont(new Font("Arial", Font.PLAIN, 14));
         FontMetrics fontMetrics = g.getFontMetrics();
         int textWidth = fontMetrics.stringWidth(this.text);
         int textHeight = fontMetrics.getHeight();
-        int rectWidth = textWidth + 20; // Add some padding for the rectangle
-        int rectHeight = textHeight + 10; // Add some padding for the rectangle
+        int rectWidth = 75; // Add some padding for the rectangle
+        int rectHeight = 25; // Add some padding for the rectangle
         Color lightPastelGreen = new Color(144, 238, 144);
         g.setColor(lightPastelGreen);
         g.fillRect(this.x, this.y, rectWidth, rectHeight);
