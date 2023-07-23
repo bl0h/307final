@@ -41,21 +41,48 @@ public class Spider {
     }
 
     public void draw(Graphics g){
+        // g.setColor(Color.WHITE);
+        // g.fillOval(x, y, 30, 30);
+        // g.setColor(Color.BLACK);
+        // int leftEyeX = this.x + 7;
+        // int leftEyeY = this.y + 9;
+        // g.fillOval(leftEyeX, leftEyeY, 6, 6);
+        // int rightEyeX = this.x + 18;
+        // int rightEyeY = this.y + 9;
+        // g.fillOval(rightEyeX, rightEyeY, 6, 6);
+        // g.setColor(Color.BLACK);
+        // int mouthStartX = this.x + 9;
+        // int mouthStartY = this.y + 20;
+        // g.drawArc(mouthStartX, mouthStartY, 12, 6, 0, -180);
+
         g.setColor(Color.WHITE);
         g.fillOval(x, y, 30, 30);
         g.setColor(Color.BLACK);
-        int leftEyeX = this.x + 7;
-        int leftEyeY = this.y + 9;
-        g.fillOval(leftEyeX, leftEyeY, 6, 6);
-        int rightEyeX = this.x + 18;
-        int rightEyeY = this.y + 9;
-        g.fillOval(rightEyeX, rightEyeY, 6, 6);
-        g.setColor(Color.BLACK);
-        int mouthStartX = this.x + 9;
-        int mouthStartY = this.y + 20;
-        g.drawArc(mouthStartX, mouthStartY, 12, 6, 0, -180);
+
+        // Draw the eyes and mouth based on the spider's direction
+        switch (direction) {
+            case "north":
+                drawEyesAndMouth(g, 7, 9, 18, 9, 9, 20, 12, 6, 0, -180);
+                break;
+            case "east":
+                drawEyesAndMouth(g, 9, 7, 9, 18, 20, 9, 6, 12, -90, -180);
+                break;
+            case "south":
+                drawEyesAndMouth(g, 7, 21, 18, 21, 9, 13, 12, 6, 0, 180);
+                break;
+            case "west":
+                drawEyesAndMouth(g, 21, 7, 21, 18, 20, 9, 6, 12, -90, 180);
+                break;
+            default:
+                drawEyesAndMouth(g, 7, 9, 18, 9, 9, 20, 12, 6, 0, -180);
+                break;
+        }
     }
 
-    public void paintCell(World w){
+
+    private void drawEyesAndMouth(Graphics g, int leftEyeX, int leftEyeY, int rightEyeX, int rightEyeY, int mouthStartX, int mouthStartY, int mouthWidth, int mouthHeight, int startAngle, int arcAngle) {
+        g.fillOval(this.x + leftEyeX, this.y + leftEyeY, 6, 6);
+        g.fillOval(this.x + rightEyeX, this.y + rightEyeY, 6, 6);
+        g.drawArc(this.x + mouthStartX, this.y + mouthStartY, mouthWidth, mouthHeight, startAngle, arcAngle);
     }
 }
