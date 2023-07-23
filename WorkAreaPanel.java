@@ -9,7 +9,6 @@ import java.awt.Graphics;
 public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionListener{
 
 	private int x, y, x2, y2;
-	
    
 
     
@@ -39,7 +38,7 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
 		x=e.getX();
 		y=e.getY();
 
-		// move.draw(g)
+		
 
 	}
 	
