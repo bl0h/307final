@@ -14,7 +14,7 @@ public class World{
         this.numRows = numRows;
         this.numCols = numCols;
         this.cellSize = 80;
-        this.spider = new Spider(30, 30, "north");
+        this.spider = new Spider();
         this.problemHelper = new ProblemHelper(this.spider);
         this.level = 1;
     
@@ -37,6 +37,25 @@ public class World{
         return numCols;
     }
 
+    public void applySpiderCommands() {
+        Datasource d = Datasource.getInstance();
+        LinkedList<Block> program = d.getProgram();        
+
+        for(Block block : program) {
+            String blockName = block.getText();
+
+            if(blockName.equals("move")) {
+                System.out.println("Spider should move");
+                spider.move();
+            }
+            else if(blockName.equals("turn")) {
+                spider.turn();
+            }
+            else if(blockName.equals("paint")) {
+                paintCell(Color.RED);
+            }
+        }
+    }
     public void draw(Graphics g) {
         Datasource d = Datasource.getInstance();
         int gridWidth = numCols * cellSize;

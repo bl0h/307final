@@ -9,10 +9,10 @@ public class Spider {
     private String direction; //direction is north, east, south, west
     private String s[] = {"north", "east", "south", "west"};
 
-    public Spider(int x, int y, String direction){
-        this.x = x;
-        this.y = y;
-        this.direction = direction;
+    public Spider(){
+        this.x = 25;
+        this.y = 25;
+        this.direction = "north";
     }
 
     public int getX(){return this.x;}
@@ -61,6 +61,7 @@ public class Spider {
     }
 
     public void draw(Graphics g){
+        System.out.println("Drawing spider");
         // g.setColor(Color.WHITE);
         // g.fillOval(x, y, 30, 30);
         // g.setColor(Color.BLACK);

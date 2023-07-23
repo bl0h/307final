@@ -7,6 +7,9 @@ import javax.swing.border.LineBorder;
 
 public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionListener{
     
+    World world;
+    WorldPanel worldPanel;
+
     Block move = new Block("move", 600, 100);
 	Block turn = new Block("turn", 600, 200);
 	Block paint = new Block("paint", 600, 300);
@@ -16,9 +19,11 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
     private boolean moveSelected;
 
 
-    public WorkAreaPanel(){
+    public WorkAreaPanel(World world, WorldPanel worldPanel){
             addMouseListener(this);
             addMouseMotionListener(this);
+            this.world = world;
+            this.worldPanel = worldPanel;
         }
 
 
@@ -49,14 +54,13 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
         x = e.getX();
         y = e.getY();
 
-        System.out.println("MouseX"+ x);
-        System.out.println("MouseY"+ y);
+        // System.out.println("MouseX"+ x);
+        // System.out.println("MouseY"+ y);
 
         if(x > 600 && x<675 && y>100 && y<125){
             System.out.println("inside move");
             blockName = "move";
             moveSelected = true;
-
         }
         // if(x > 600 && x<675 && y>200 && y<225){
         //     System.out.println("inside turn");
@@ -72,7 +76,6 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
 
         // }
 
-
 	}
 
 	
@@ -81,8 +84,8 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
         x2= e.getX();
         y2 = e.getY();
 
-        System.out.println("MouseX"+ x2);
-        System.out.println("MouseY"+ y2);
+        // System.out.println("MouseX"+ x2);
+        // System.out.println("MouseY"+ y2);
 
         if(x2 < 500){
             if(moveSelected){
@@ -90,6 +93,8 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
                 Datasource d = Datasource.getInstance();
                 d.addBlock(addedBlock);
                 moveSelected = false;
+                world.applySpiderCommands();
+                worldPanel.repaint();
             }
         }
 		repaint();
@@ -99,10 +104,6 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
 	public void mouseDragged(MouseEvent e) {
         x2= e.getX();
         y2 = e.getY();
-
-        System.out.println("MouseX"+ x2);
-        System.out.println("MouseY"+ y2);
-
 		repaint();
 	}
 	

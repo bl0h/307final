@@ -77,7 +77,7 @@ public class App extends JFrame {
         World world = new World(5,5);
 
         worldPanel = new WorldPanel(world);
-        workAreaPanel = new WorkAreaPanel();
+        workAreaPanel = new WorkAreaPanel(world, worldPanel);
 
         mainPanel.add(worldPanel);
         mainPanel.add(workAreaPanel);
