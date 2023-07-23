@@ -1,36 +1,53 @@
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseEvent;
 import javax.swing.JPanel;
 import java.awt.*;
 import javax.swing.border.LineBorder;
 import java.awt.Graphics;
 
-public class WorkAreaPanel extends JPanel {
+public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionListener{
+
+    
 
     @Override
     public void paintComponent(Graphics g){
-        setBackground(Color.GRAY);
-        setPreferredSize(new Dimension(600, 700));
+        setBackground(Color.WHITE);
+        setPreferredSize(new Dimension(800, 700));
         setBorder(new LineBorder(Color.BLACK,1));
         super.paintComponent(g);
+
+        
+        g.setColor(Color.LIGHT_GRAY);
+        g.fillRect(550, 0, 250, 700);
+        
     }
 
 
-    public void mousePress(){
-
-
-    }
-
-    public void mouseRelease(){
-
-
-    }
-
-
-    public void delete(){
-
-
-
-    }
+    @Override
+	public void mousePressed(MouseEvent e) {
+	}
+	
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		repaint();
+	}
+	
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		repaint();
+	}
+	
+	@Override
+	public void mouseEntered(MouseEvent e) {}
+	
+	@Override
+	public void mouseExited(MouseEvent e) {}
+	
+	@Override
+	public void mouseMoved(MouseEvent e) {}
+	
+	@Override
+	public void mouseClicked(MouseEvent e) {}
     
 }
