@@ -3,7 +3,7 @@ import java.util.LinkedList;
 public class Datasource {
     private static Datasource datasource = null;
     private LinkedList<Cell> cellList = new LinkedList<Cell>();
-    private LinkedList<ParentBlock> program = new LinkedList<ParentBlock>();
+    private LinkedList<Block> program = new LinkedList<Block>();
 
     private Datasource(){}
 
@@ -37,6 +37,10 @@ public class Datasource {
 
     public void clearProgram(){
         this.program.removeAll(this.program);
+    }
+
+    public LinkedList<Block> getProgram(){
+        return this.program;
     }
 
 }

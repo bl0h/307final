@@ -13,7 +13,7 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
 
     private int x, y, x2, y2;
     String blockName = "";
-    private boolean blockSelected;
+    private boolean moveSelected;
 
 
     public WorkAreaPanel(){
@@ -36,6 +36,11 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
         move.draw(g);
 		turn.draw(g);
 		paint.draw(g);
+
+        Datasource d = Datasource.getInstance();
+        for (Block b: d.getProgram()){
+            b.draw(g);
+        }
     }
 
 
@@ -50,22 +55,22 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
         if(x > 600 && x<675 && y>100 && y<125){
             System.out.println("inside move");
             blockName = "move";
-            blockSelected = true;
+            moveSelected = true;
 
         }
-        if(x > 600 && x<675 && y>200 && y<225){
-            System.out.println("inside turn");
-            blockName = "turn";
-            blockSelected = true;
+        // if(x > 600 && x<675 && y>200 && y<225){
+        //     System.out.println("inside turn");
+        //     blockName = "turn";
+        //     blockSelected = true;
 
-        }
+        // }
 
-        if(x > 600 && x<675 && y>300 && y<325){
-            System.out.println("inside paint");
-             blockName = "paint";
-             blockSelected = true;
+        // if(x > 600 && x<675 && y>300 && y<325){
+        //     System.out.println("inside paint");
+        //      blockName = "paint";
+        //      blockSelected = true;
 
-        }
+        // }
 
 
 	}
@@ -80,11 +85,11 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
         System.out.println("MouseY"+ y2);
 
         if(x2 < 500){
-            if(blockSelected){
+            if(moveSelected){
                 Block addedBlock = new Block(blockName, x2, y2);
                 Datasource d = Datasource.getInstance();
                 d.addBlock(addedBlock);
-                blockSelected = false;
+                moveSelected = false;
             }
         }
 		repaint();
