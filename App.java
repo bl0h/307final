@@ -94,6 +94,7 @@ public class App extends JFrame {
             }
             c.setDiamond(true, Color.ORANGE);
             datasource.addCell(c);
+            c.setSpider();
         }
 
         worldPanel.updateDrawing();

@@ -41,27 +41,19 @@ public class Spider {
     }
 
     public void draw(Graphics g){
+        g.setColor(Color.WHITE);
+        g.fillOval(x, y, 30, 30);
         g.setColor(Color.BLACK);
-        g.fillOval(x, y, 10, 10);
-        g.setColor(Color.RED);
-        int leftEyeX = this.x + 3;
-        int leftEyeY = this.y + 3;
-        g.fillOval(leftEyeX, leftEyeY, 2, 2);
-        int rightEyeX = this.x + 7;
-        int rightEyeY = this.y + 3;
-        g.fillOval(rightEyeX, rightEyeY, 2, 2);
+        int leftEyeX = this.x + 7;
+        int leftEyeY = this.y + 9;
+        g.fillOval(leftEyeX, leftEyeY, 6, 6);
+        int rightEyeX = this.x + 18;
+        int rightEyeY = this.y + 9;
+        g.fillOval(rightEyeX, rightEyeY, 6, 6);
         g.setColor(Color.BLACK);
-        int legStartY = this.y + 10;
-        int legSpacing = 2;
-        int legLength = 10;
-        for (int i = 0; i < 4; i++) {
-            int legX = this.x - 2 - i * legSpacing;
-            g.drawLine(legX, legStartY, legX - legLength, legStartY + legLength);
-        }
-        for (int i = 0; i < 4; i++) {
-            int legX = this.x + 12 + i * legSpacing;
-            g.drawLine(legX, legStartY, legX + legLength, legStartY + legLength);
-        }
+        int mouthStartX = this.x + 9;
+        int mouthStartY = this.y + 20;
+        g.drawArc(mouthStartX, mouthStartY, 12, 6, 0, -180);
     }
 
     public void paintCell(World w){

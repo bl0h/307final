@@ -33,6 +33,11 @@ public class World{
         return numCols;
     }
 
+    public void drawSpider(Graphics g) {
+        Spider spider = new Spider(2, 3, "north");
+        spider.draw(g);
+    }
+
     public void draw(Graphics g) {
         Datasource d = Datasource.getInstance();
         this.cells = d.getCellList();
@@ -52,6 +57,7 @@ public class World{
             int x = col * cellSize;
             g.drawLine(x, 0, x, gridHeight);
         }
+        drawSpider(g);
     }
 
 

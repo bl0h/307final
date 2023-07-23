@@ -7,6 +7,11 @@ import javax.swing.border.LineBorder;
 import java.awt.Graphics;
 
 public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionListener{
+
+	private Block selectedBlock;
+    private int xOffset;
+    private int yOffset;
+
     
     Block move = new Block("move", 600, 100);
 	Block turn = new Block("turn", 600, 200);
@@ -31,7 +36,18 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
 
     @Override
 	public void mousePressed(MouseEvent e) {
-
+		if (mouseX >= move.getX() && mouseX <= move.getX() + move.getWidth() &&
+            mouseY >= move.getY() && mouseY <= move.getY() + move.getHeight()) {
+            selectedBlock = move;
+        } else if (mouseX >= turn.getX() && mouseX <= turn.getX() + turn.getWidth() &&
+                   mouseY >= turn.getY() && mouseY <= turn.getY() + turn.getHeight()) {
+            selectedBlock = turn;
+        } else if (mouseX >= paint.getX() && mouseX <= paint.getX() + paint.getWidth() &&
+                   mouseY >= paint.getY() && mouseY <= paint.getY() + paint.getHeight()) {
+            selectedBlock = paint;
+        } else {
+            selectedBlock = null;
+        }
 
 	}
 	
