@@ -29,28 +29,6 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
             this.worldPanel = worldPanel;
 
 
-    try{
-        File imageFile = new File("trashcan.png");
-        BufferedImage originalImage = ImageIO.read(imageFile);
-
-        int newWidth = 100;
-        int newHeight = 100;
-        Image resizedImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
-
-        ImageIcon imageIcon = new ImageIcon(resizedImage);
-        JLabel trashLabel = new JLabel(imageIcon);
-
-        JPanel trashPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        trashPanel.setBackground(Color.WHITE);
-        trashPanel.add(trashLabel);
-        add(trashPanel, BorderLayout.SOUTH);
-        }
-
-        catch(Exception e){
-            e.printStackTrace();
-        }
-
-
     }
 
 
