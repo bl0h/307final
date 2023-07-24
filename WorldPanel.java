@@ -4,8 +4,8 @@ import java.awt.*;
 public class WorldPanel extends JPanel{
     World w;
 
-    public WorldPanel(World w){
-        this.w = w;
+    public WorldPanel(){
+        this.w = new World(5,5);
     }
 
 
@@ -17,8 +17,16 @@ public class WorldPanel extends JPanel{
         w.draw(g);
     }
 
-    public void updateDrawing(){
-        repaint();
+    public void applySpiderCommands(){
+        w.applySpiderCommands();
+    }
+
+    public void clearProgram(){
+        w.clearProgram();
+    }
+
+    public void resetCellList(){
+        w.resetCellList();
     }
 
 }

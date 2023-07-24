@@ -18,15 +18,8 @@ public class World{
         this.problemHelper = new ProblemHelper(this.spider);
         this.level = 1;
     
-        // for (int row = 0; row < numRows; row++) {
-        //     for (int col = 0; col < numCols; col++) {
-        //         Cell cell = new Cell(row, col, Color.BLACK);
-        //         grid[row][col] = cell;
-        //         cells.add(cell);
-        //     }
-        // }
         Datasource d = Datasource.getInstance();
-        d.setCellList(problemHelper.getLevel1()); //getLevel0 returns level 0's cell list;
+        d.setCellList(problemHelper.getLevel(this.level)); //getLevel0 returns level 0's cell list;
     }
 
     public int getNumRows() {
@@ -55,7 +48,36 @@ public class World{
                 paintCell(Color.RED);
             }
         }
+
+        // Use for running program blocks one at a time without executing run button
+
+        // if (!program.isEmpty()) {
+        //     Block lastBlock = program.getLast();
+        //     String blockName = lastBlock.getText();
+        //     if (blockName.equals("move")) {
+        //         System.out.println("Spider should move");
+        //         spider.move();
+        //     } else if (blockName.equals("turn")) {
+        //         spider.turn();
+        //     } else if (blockName.equals("paint")) {
+        //         paintCell(Color.RED);
+        //     }
+        //     program.clear();
+        // }    
     }
+
+    public void clearProgram() {
+        Datasource d = Datasource.getInstance();
+        d.clearProgram();  
+    }
+
+    public void resetCellList() {
+        LinkedList<Cell> levelCells = problemHelper.getLevel(this.level);
+        Datasource d = Datasource.getInstance();
+        d.setCellList(levelCells);
+    }
+
+    
     public void draw(Graphics g) {
         Datasource d = Datasource.getInstance();
         int gridWidth = numCols * cellSize;
@@ -86,6 +108,7 @@ public class World{
         Cell c = cellList.get(index);
         c.setColor(color);
     }
+    
 
 }
 

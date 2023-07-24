@@ -27,10 +27,6 @@ public class Datasource {
         this.cellList.add(c);
     }
 
-    public void clearCellList(){
-        this.cellList.removeAll(this.cellList);
-    }
-
     public void addBlock(Block b){
         this.program.add(b);
     }

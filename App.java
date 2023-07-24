@@ -5,13 +5,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.File;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.awt.*;
 
 public class App extends JFrame implements ActionListener{
@@ -68,6 +64,9 @@ public class App extends JFrame implements ActionListener{
         JButton restartButton = new JButton("Restart Level");
         restartButton.setFont(restartButton.getFont().deriveFont(20f));
         restartButton.setPreferredSize(new Dimension(150, 70));
+        restartButton.addActionListener(e -> worldPanel.clearProgram());
+        restartButton.addActionListener(e ->worldPanel.resetCellList());
+        restartButton.addActionListener(e -> worldPanel.repaint());
 
         topPanel.add(directionButton);
         topPanel.add(restartButton);
@@ -75,14 +74,12 @@ public class App extends JFrame implements ActionListener{
 
         JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         mainPanel.setBackground(Color.WHITE);
-        //mainPanel.setPreferredSize(new Dimension(300, 300));
-        World world = new World(5,5);
 
-        worldPanel = new WorldPanel(world);
-        workAreaPanel = new WorkAreaPanel(world, worldPanel);
+        worldPanel = new WorldPanel();
+        workAreaPanel = new WorkAreaPanel(worldPanel);
 
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS)); // Use BoxLayout with Y_AXIS
+        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS)); 
         buttonPanel.setBackground(Color.WHITE);
         buttonPanel.setPreferredSize(new Dimension(100, 100));
         mainPanel.add(buttonPanel);
@@ -91,12 +88,16 @@ public class App extends JFrame implements ActionListener{
         playButton.setFont(playButton.getFont().deriveFont(20f));
         playButton.setBackground(Color.GREEN);
         playButton.setOpaque(true);
+        playButton.addActionListener(e -> worldPanel.applySpiderCommands());
+        playButton.addActionListener(e -> worldPanel.repaint());
         
 
         JButton resetButton = new JButton("Reset");
         resetButton.setFont(resetButton.getFont().deriveFont(20f));
         resetButton.setBackground(Color.BLUE);
         resetButton.setOpaque(true);
+        resetButton.addActionListener(e ->worldPanel.resetCellList());
+        resetButton.addActionListener(e -> worldPanel.repaint());
 
         buttonPanel.add(playButton);
         buttonPanel.add(resetButton);
@@ -105,24 +106,7 @@ public class App extends JFrame implements ActionListener{
         mainPanel.add(buttonPanel);
         mainPanel.add(workAreaPanel);
 
-        
-        // Datasource datasource = Datasource.getInstance();
-        // for(int i = 0; i < world.getNumRows() * world.getNumCols(); i++){
-        //     Cell c;
-        //     if(i%2 ==0){
-        //         c = new Cell(i % 5, i / 5, Color.BLACK);
-        //     }
-        //     else{                
-        //         c = new Cell(i % 5, i / 5, Color.BLACK);
-        //     }
-        //     c.setDiamond(true, Color.ORANGE);
-        //     datasource.addCell(c);
-        //     c.setSpider();
-        // }
-
-       
-        
-            /* 
+        /* 
 
         try{
         File imageFile = new File("trashcan.png");
@@ -135,7 +119,6 @@ public class App extends JFrame implements ActionListener{
         ImageIcon imageIcon = new ImageIcon(resizedImage);
         JLabel trashLabel = new JLabel(imageIcon);
 
-
         JPanel trashPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         trashPanel.setBackground(Color.WHITE);
         trashPanel.add(trashLabel);
@@ -146,23 +129,14 @@ public class App extends JFrame implements ActionListener{
             e.printStackTrace();
         }
         */
-        /* 
-        JPanel sidePanel = new JPanel(new BorderLayout());
-        sidePanel.setBackground(Color.LIGHT_GRAY);
-        sidePanel.setPreferredSize(new Dimension(250, 700));
-        mainPanel.add(sidePanel, BorderLayout.SOUTH);
-        */
-
+        
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(topPanel, BorderLayout.NORTH);
         getContentPane().add(mainPanel, BorderLayout.CENTER);
-        pack(); 
-        
+        pack();       
         }
 
         public void actionPerformed(ActionEvent e){
-
-
 
         }
 
@@ -191,8 +165,6 @@ public class App extends JFrame implements ActionListener{
             popupDialog.setVisible(true);
         }
     
-
-
 }
 
 

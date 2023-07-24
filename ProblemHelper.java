@@ -8,21 +8,25 @@ public class ProblemHelper {
         this.spider = spider;
     }
 
-    public LinkedList<Cell> getLevel1() {
+    public LinkedList<Cell> getLevel(int level) {
         LinkedList<Cell> cells = new LinkedList<Cell>();
         for(int i = 0; i < 25; i++){
             cells.add(new Cell(i / 5, i % 5, Color.BLACK));
         }   
 
-        Cell cell = cells.get(6);
-        cell.setDiamond(true, Color.RED);
-        cell = cells.get(8);
-        cell.setDiamond(true, Color.BLUE);
-        cell = cells.get(11);
-        cell.setDiamond(true, Color.GREEN);
-        cell = cells.get(16);
-        spider.setPosition(3, 1);
-        cell.setSpider(true);
+        if(level == 1){
+            spider.setDirection("north");
+            Cell cell = cells.get(6);
+            cell.setDiamond(true, Color.RED);
+            cell = cells.get(8);
+            cell.setDiamond(true, Color.BLUE);
+            cell = cells.get(11);
+            cell.setDiamond(true, Color.GREEN);
+            cell = cells.get(16);
+            spider.setPosition(3, 1);
+            cell.setSpider(true);
+        }
+
 
         
         return cells;

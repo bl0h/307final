@@ -1,15 +1,17 @@
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.io.File;
 import java.awt.event.MouseEvent;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import java.awt.image.BufferedImage;
 import java.awt.*;
 import javax.swing.border.LineBorder;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
 
 public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionListener{
     
-    World world;
     WorldPanel worldPanel;
 
     Block move = new Block("move", 600, 100);
@@ -21,16 +23,34 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
     private boolean moveSelected, turnSelected, paintSelected;
 
 
-    public WorkAreaPanel(World world, WorldPanel worldPanel){
+    public WorkAreaPanel(WorldPanel worldPanel){
             addMouseListener(this);
             addMouseMotionListener(this);
-            this.world = world;
             this.worldPanel = worldPanel;
 
 
-            //String[] colors = {"Red", "Green", "Blue"};
-            //JComboBox list = new JComboBox(colors);
-            //add(list);
+    try{
+        File imageFile = new File("trashcan.png");
+        BufferedImage originalImage = ImageIO.read(imageFile);
+
+        int newWidth = 100;
+        int newHeight = 100;
+        Image resizedImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+
+        ImageIcon imageIcon = new ImageIcon(resizedImage);
+        JLabel trashLabel = new JLabel(imageIcon);
+
+        JPanel trashPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        trashPanel.setBackground(Color.WHITE);
+        trashPanel.add(trashLabel);
+        add(trashPanel, BorderLayout.SOUTH);
+        }
+
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
+
     }
 
 
@@ -87,7 +107,6 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
                 Datasource d = Datasource.getInstance();
                 d.addBlock(addedBlock);
                 moveSelected = false;
-                world.applySpiderCommands();
                 worldPanel.repaint();
             }
             if(turnSelected){
@@ -95,7 +114,6 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
                 Datasource d = Datasource.getInstance();
                 d.addBlock(addedBlock);
                 turnSelected = false;
-                world.applySpiderCommands();
                 worldPanel.repaint();
             }
             if(paintSelected){
@@ -103,7 +121,6 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
                 Datasource d = Datasource.getInstance();
                 d.addBlock(addedBlock);
                 paintSelected = false;
-                world.applySpiderCommands();
                 worldPanel.repaint();
             }
         }

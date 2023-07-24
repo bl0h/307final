@@ -41,6 +41,10 @@ public class Spider {
         System.out.println(this.direction);
     }
 
+    public void setDirection(String s){
+        this.direction = s;
+    }
+
     public void move(){
         if(this.direction == "north"){
             this.y -= 80;
