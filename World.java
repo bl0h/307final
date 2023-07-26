@@ -85,9 +85,10 @@ public class World{
 
         for (Cell cell : d.getCellList()) {
             cell.draw(g, cellSize);
-            if (cell.hasSpider()){
-                spider.draw(g);
-            }
+        }
+
+        if (spider != null){
+            spider.draw(g);
         }
 
         g.setColor(Color.GRAY);
