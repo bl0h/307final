@@ -96,6 +96,7 @@ public class App extends JFrame implements ActionListener{
         resetButton.setFont(resetButton.getFont().deriveFont(20f));
         resetButton.setBackground(Color.BLUE);
         resetButton.setOpaque(true);
+
         resetButton.addActionListener(e ->worldPanel.resetCellList());
         resetButton.addActionListener(e -> worldPanel.repaint());
 

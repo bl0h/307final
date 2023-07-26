@@ -11,7 +11,7 @@ import java.awt.*;
 import javax.swing.border.LineBorder;
 
 public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionListener{
-    
+
     WorldPanel worldPanel;
 
     Block move = new Block("move", 600, 100);
@@ -24,9 +24,13 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
 
 
     public WorkAreaPanel(WorldPanel worldPanel){
-            addMouseListener(this);
-            addMouseMotionListener(this);
-            this.worldPanel = worldPanel;
+        addMouseListener(this);
+        addMouseMotionListener(this);
+        this.worldPanel = worldPanel;
+
+        
+
+
 
 
     }
@@ -59,17 +63,19 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
         x = e.getX();
         y = e.getY();  
 
-        if(x > 600 && x<675 && y>100 && y<125){
+        if(x > move.getX() && x < move.getX()+75 && y > move.getY() && y < move.getY()+25){
             blockName = "move";
             moveSelected = true;
+            
         }
-         if(x > 600 && x<675 && y>200 && y<225){
-             blockName = "turn";
-             turnSelected = true;
+        if(x > turn.getX() && x < turn.getX()+75 && y > turn.getY() && y < turn.getX()+25){
+            blockName = "turn";
+            turnSelected = true;
+           
         }
-         if(x > 600 && x<675 && y>300 && y<325){
-              blockName = "paint";
-              paintSelected = true;
+        if(x > paint.getX() && x < paint.getX()+75 && y > paint.getY() && y < paint.getX()+25){
+            blockName = "paint";
+            paintSelected = true;
         }
 	}
 

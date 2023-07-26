@@ -20,6 +20,13 @@ public class Block extends ParentBlock{
         this.y = y;
     }
 
+    public int getX(){
+        return x;
+    }
+
+    public int getY(){
+       return y;
+    }
     public String getText(){
         return this.text;
     }
