@@ -38,7 +38,6 @@ public class World{
             String blockName = block.getText();
 
             if(blockName.equals("move")) {
-                System.out.println("Spider should move");
                 spider.move();
             }
             else if(blockName.equals("turn")) {
@@ -47,23 +46,7 @@ public class World{
             else if(blockName.equals("paint")) {
                 paintCell(Color.RED);
             }
-        }
-
-        // Use for running program blocks one at a time without executing run button
-
-        // if (!program.isEmpty()) {
-        //     Block lastBlock = program.getLast();
-        //     String blockName = lastBlock.getText();
-        //     if (blockName.equals("move")) {
-        //         System.out.println("Spider should move");
-        //         spider.move();
-        //     } else if (blockName.equals("turn")) {
-        //         spider.turn();
-        //     } else if (blockName.equals("paint")) {
-        //         paintCell(Color.RED);
-        //     }
-        //     program.clear();
-        // }    
+        }   
     }
 
     public void clearProgram() {
