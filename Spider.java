@@ -45,13 +45,14 @@ public class Spider {
         this.direction = s;
     }
 
-    public void move(){
+    public int move(){
         if(this.direction == "north"){
             this.y -= 80;
             this.cellId -= 5;
             if (this.y < 0){
                 this.y += 80;
                 this.cellId += 5;
+                return -1;
             }
         }
         if(this.direction == "east"){
@@ -60,6 +61,7 @@ public class Spider {
             if (this.x > 400){
                 this.x -= 80;
                 this.cellId --;
+                return -1;
             }
         }
         if(this.direction == "south"){
@@ -68,6 +70,7 @@ public class Spider {
             if (this.y > 400){
                 this.y -= 80;
                 this.cellId -= 5;
+                return -1;
             }
         }
         if(this.direction == "west"){
@@ -76,8 +79,10 @@ public class Spider {
             if (this.x < 0){
                 this.x += 80;
                 this.cellId ++;
+                return -1;
             }
         }
+        return 0;
     }
 
     public void draw(Graphics g){
