@@ -106,6 +106,16 @@ public class World{
         Cell c = cellList.get(index);
         c.setColor(color);
     }
+
+    public boolean grade(){
+        Datasource d = Datasource.getInstance();
+        for (Cell c: d.getCellList()){
+            if (c.getDiamondColor() != c.getColor()){
+                return false;
+            }
+        }
+        return true;
+    }
     
 
 }
