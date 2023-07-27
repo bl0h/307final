@@ -10,6 +10,8 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
     private int x, y, x2, y2;
     private Rectangle rect = new Rectangle(25, 620, 50, 60);
     private boolean isBlockSelected;
+    private boolean isLoopSelected;
+    
 
     WorldPanel worldPanel;
     Block move = new Block("move", 600, 70);
@@ -17,7 +19,7 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
 	Block paintRed = new Block("paint red", 600, 210);
     Block paintGreen = new Block("paint green", 600, 280);
     Block paintBlue = new Block("paint blue", 600, 350);
-    Block repeat = new Block("loop until wall", 600, 420);
+    Loop repeat = new Loop( 600, 420,"loop until wall");
     Block selectedBlock = null;
     String blockName = "";
 
@@ -69,27 +71,33 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
 
         if(x > move.getX() && x < move.getX()+95 && y > move.getY() && y < move.getY()+35){
             blockName = "move";
-            isBlockSelected = true;   
+            isBlockSelected = true;
+            selectedBlock = move;
         }
         if(x > turn.getX() && x < turn.getX()+95 && y > turn.getY() && y < turn.getX()+35){
             blockName = "turn";
-            isBlockSelected = true;  
+            isBlockSelected = true;
+            selectedBlock = turn;  
         }
         if(x > paintRed.getX() && x < paintRed.getX()+95 && y > paintRed.getY() && y < paintRed.getX()+35){
             blockName = "paint red";
             isBlockSelected = true;
+            selectedBlock = paintRed;
         }
         if(x > paintGreen.getX() && x < paintGreen.getX()+95 && y > paintGreen.getY() && y < paintGreen.getX()+35){
             blockName = "paint green";
             isBlockSelected = true;
+            selectedBlock = paintGreen;
         }
         if(x > paintBlue.getX() && x < paintBlue.getX()+95 && y > paintBlue.getY() && y < paintBlue.getX()+35){
             blockName = "paint blue";
             isBlockSelected = true;
+            selectedBlock = paintBlue;
         }
         if(x > repeat.getX() && x < repeat.getX()+95 && y > repeat.getY() && y < repeat.getX()+35){
             blockName = "loop until wall";
-            isBlockSelected = true;
+            isLoopSelected = true;
+            selectedBlock = repeat;
         }
 
 
@@ -115,13 +123,35 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
             if(isBlockSelected){
                 Block addedBlock = new Block(blockName, x2, y2);
                 d.addBlock(addedBlock);
+
+                for (Block block : d.getProgram()) {
+                    if(block instanceof Loop){
+                        Loop l = (Loop)block;
+                        if(l.contains(x2,y2)){
+                            System.out.println("shit");
+                            l.addBlock(selectedBlock);
+                            break;
+                        }
+                    }
+                
+                }
                 isBlockSelected = false;
+                worldPanel.repaint();
+            }
+
+            if(isLoopSelected){
+                Loop addedLoop = new Loop(x2, y2, blockName);
+                d.addBlock(addedLoop);
+                isLoopSelected = false;
                 worldPanel.repaint();
             }
 
             if(rect.contains(x2,y2) && selectedBlock !=null){
                 d.removeBlock(selectedBlock);
             }
+
+            
+
         }
 		repaint();
 	}

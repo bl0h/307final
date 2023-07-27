@@ -1,5 +1,4 @@
 import java.awt.*;
-
 public class Block{
 
     private String text;
@@ -10,6 +9,8 @@ public class Block{
         this.text = text;
         this.x = x;
         this.y = y;
+        
+        
     }
 
     public void setX(int x){
