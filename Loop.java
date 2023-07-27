@@ -1,33 +1,27 @@
 import java.util.LinkedList;
 import java.awt.*;
 
-public class Loop{
+public class Loop extends Block{
 
-    private int loops;
     private LinkedList<Block> blockList = new LinkedList<Block>();
     private String text;
     private int x;
     private int y;
+    private int rectWidth = 105;
+    private int rectHeight = 80;
 
-    public Loop(int x, int y, int loops){
-        this.x = x;
-        this.y = y;
-        this.loops = loops;
-        this.text = "Loop of " + this.loops;
+    public Loop(int x, int y, String text){
+        super(text, x, y);
     }
 
     public void addBlock(Block b){
         blockList.add(b);
+        this.rectHeight += 40;
     }
 
     public LinkedList<Block> getBlockList(){
         return this.blockList;
     }
-
-    public int getLoops(){
-        return this.loops;
-    }
-
 
     public void draw(Graphics g){
         g.setColor(Color.BLACK);
@@ -35,13 +29,11 @@ public class Loop{
         FontMetrics fontMetrics = g.getFontMetrics();
         int textWidth = fontMetrics.stringWidth(this.text);
         int textHeight = fontMetrics.getHeight();
-        int rectWidth = 75; // Add some padding for the rectangle
-        int rectHeight = 25; // Add some padding for the rectangle
-        Color lightPastelGreen = new Color(144, 238, 144);
-        g.setColor(lightPastelGreen);
+        Color pastelRed = new Color(255, 105, 97);
+        g.setColor(pastelRed);
         g.fillRect(this.x, this.y, rectWidth, rectHeight);
         int textX = this.x + (rectWidth - textWidth) / 2;
-        int textY = this.y + (rectHeight - textHeight) / 2 + fontMetrics.getAscent();
+        int textY = this.y + (35 - textHeight) / 2 + fontMetrics.getAscent();
         g.setColor(Color.BLACK);
         g.drawString(this.text, textX, textY);
     }
