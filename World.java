@@ -43,8 +43,14 @@ public class World{
             else if(blockName.equals("turn")) {
                 spider.turn();
             }
-            else if(blockName.equals("paint")) {
+            else if(blockName.equals("paint red")) {
                 paintCell(Color.RED);
+            }
+            else if(blockName.equals("paint green")) {
+                paintCell(Color.GREEN);
+            }
+            else if(blockName.equals("paint blue")) {
+                paintCell(Color.BLUE);
             }
         }   
     }

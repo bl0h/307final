@@ -12,9 +12,11 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
     private boolean moveSelected, turnSelected, paintSelected;
 
     WorldPanel worldPanel;
-    Block move = new Block("move", 600, 100);
-	Block turn = new Block("turn", 600, 200);
-	Block paint = new Block("paint", 600, 300);
+    Block move = new Block("move", 600, 70);
+	Block turn = new Block("turn", 600, 140);
+	Block paintRed = new Block("paint red", 600, 210);
+    Block paintGreen = new Block("paint green", 600, 280);
+    Block paintBlue = new Block("paint blue", 600, 350);
     Block selectedBlock = null;
     String blockName = "";
 
@@ -46,7 +48,9 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
 
         move.draw(g);
 		turn.draw(g);
-		paint.draw(g);
+		paintRed.draw(g);
+        paintGreen.draw(g);
+        paintBlue.draw(g);
 
         Datasource d = Datasource.getInstance();
         for (Block b: d.getProgram()){
@@ -71,15 +75,26 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
             turnSelected = true;
            
         }
-        if(x > paint.getX() && x < paint.getX()+75 && y > paint.getY() && y < paint.getX()+25){
-            blockName = "paint";
+        if(x > paintRed.getX() && x < paintRed.getX()+75 && y > paintRed.getY() && y < paintRed.getX()+25){
+            blockName = "paint red";
+            paintSelected = true;
+        }
+        if(x > paintGreen.getX() && x < paintGreen.getX()+75 && y > paintGreen.getY() && y < paintGreen.getX()+25){
+            blockName = "paint green";
+            paintSelected = true;
+        }
+        if(x > paintBlue.getX() && x < paintBlue.getX()+75 && y > paintBlue.getY() && y < paintBlue.getX()+25){
+            blockName = "paint blue";
             paintSelected = true;
         }
 
+
+
+
         for(Block block: d.getProgram()){
                 if(block.contains(x,y)){
-                    System.out.println("shit");
                     selectedBlock = block;
+                    break;
                 }
                 else 
                     selectedBlock = null;
@@ -114,7 +129,6 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
                 worldPanel.repaint();
             }
             if(rect.contains(x2,y2) && selectedBlock !=null){
-                System.out.println("yes");
                 d.removeBlock(selectedBlock);
             }
         }
