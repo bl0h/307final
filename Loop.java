@@ -6,8 +6,12 @@ public class Loop{
     private int loops;
     private LinkedList<Block> blockList = new LinkedList<Block>();
     private String text;
+    private int x;
+    private int y;
 
-    public Loop(int loops){
+    public Loop(int x, int y, int loops){
+        this.x = x;
+        this.y = y;
         this.loops = loops;
         this.text = "Loop of " + this.loops;
     }
