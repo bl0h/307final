@@ -52,7 +52,15 @@ public class World{
             else if(blockName.equals("paint blue")) {
                 paintCell(Color.BLUE);
             }
+            else if(blockName.equals("loop")) {
+
+            }
         }   
+    }
+
+    public void changeLevel(int level) {
+        this.level = level;
+        resetCellList();
     }
 
     public void clearProgram() {
@@ -97,6 +105,16 @@ public class World{
         LinkedList<Cell> cellList = d.getCellList();
         Cell c = cellList.get(index);
         c.setColor(color);
+    }
+
+    public boolean grade(){
+        Datasource d = Datasource.getInstance();
+        for (Cell c: d.getCellList()){
+            if (c.getDiamondColor() != c.getColor()){
+                return false;
+            }
+        }
+        return true;
     }
     
 
