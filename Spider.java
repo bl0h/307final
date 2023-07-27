@@ -49,18 +49,34 @@ public class Spider {
         if(this.direction == "north"){
             this.y -= 80;
             this.cellId -= 5;
+            if (this.y < 0){
+                this.y += 80;
+                this.cellId += 5;
+            }
         }
         if(this.direction == "east"){
             this.x += 80;
             this.cellId ++;
+            if (this.x > 400){
+                this.x -= 80;
+                this.cellId --;
+            }
         }
         if(this.direction == "south"){
             this.y += 80;
             this.cellId += 5;
+            if (this.y > 400){
+                this.y -= 80;
+                this.cellId -= 5;
+            }
         }
         if(this.direction == "west"){
             this.x -= 80;
             this.cellId --;
+            if (this.x < 0){
+                this.x += 80;
+                this.cellId ++;
+            }
         }
     }
 
