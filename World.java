@@ -14,7 +14,7 @@ public class World{
         this.numRows = numRows;
         this.numCols = numCols;
         this.cellSize = 80;
-        this.spider = new Spider();
+        this.spider = new Spider(numRows, numCols);
         this.problemHelper = new ProblemHelper(this.spider);
         this.level = 1;
     
