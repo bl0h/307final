@@ -32,8 +32,8 @@ public class Block{
     }
 
     public boolean contains(int mouseX, int mouseY) {
-        return mouseX >= this.x && mouseX <= this.x + 75 &&
-               mouseY >= this.y && mouseY <= this.y + 25;
+        return mouseX >= this.x && mouseX <= this.x + 95 &&
+               mouseY >= this.y && mouseY <= this.y + 35;
     }
 
     public void draw(Graphics g){
@@ -42,8 +42,8 @@ public class Block{
         FontMetrics fontMetrics = g.getFontMetrics();
         int textWidth = fontMetrics.stringWidth(this.text);
         int textHeight = fontMetrics.getHeight();
-        int rectWidth = 75; // Add some padding for the rectangle
-        int rectHeight = 25; // Add some padding for the rectangle
+        int rectWidth = 95; // Add some padding for the rectangle
+        int rectHeight = 35; // Add some padding for the rectangle
         Color lightPastelGreen = new Color(144, 238, 144);
         g.setColor(lightPastelGreen);
         g.fillRect(this.x, this.y, rectWidth, rectHeight);

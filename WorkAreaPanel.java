@@ -9,7 +9,7 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
 
     private int x, y, x2, y2;
     private Rectangle rect = new Rectangle(25, 620, 50, 60);
-    private boolean moveSelected, turnSelected, paintSelected;
+    private boolean isBlockSelected;
 
     WorldPanel worldPanel;
     Block move = new Block("move", 600, 70);
@@ -17,6 +17,7 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
 	Block paintRed = new Block("paint red", 600, 210);
     Block paintGreen = new Block("paint green", 600, 280);
     Block paintBlue = new Block("paint blue", 600, 350);
+    Block repeat = new Block("loop until wall", 600, 420);
     Block selectedBlock = null;
     String blockName = "";
 
@@ -51,6 +52,7 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
 		paintRed.draw(g);
         paintGreen.draw(g);
         paintBlue.draw(g);
+        repeat.draw(g);
 
         Datasource d = Datasource.getInstance();
         for (Block b: d.getProgram()){
@@ -65,30 +67,30 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
         x = e.getX();
         y = e.getY();  
 
-        if(x > move.getX() && x < move.getX()+75 && y > move.getY() && y < move.getY()+25){
+        if(x > move.getX() && x < move.getX()+95 && y > move.getY() && y < move.getY()+35){
             blockName = "move";
-            moveSelected = true;
-            
+            isBlockSelected = true;   
         }
-        if(x > turn.getX() && x < turn.getX()+75 && y > turn.getY() && y < turn.getX()+25){
+        if(x > turn.getX() && x < turn.getX()+95 && y > turn.getY() && y < turn.getX()+35){
             blockName = "turn";
-            turnSelected = true;
-           
+            isBlockSelected = true;  
         }
-        if(x > paintRed.getX() && x < paintRed.getX()+75 && y > paintRed.getY() && y < paintRed.getX()+25){
+        if(x > paintRed.getX() && x < paintRed.getX()+95 && y > paintRed.getY() && y < paintRed.getX()+35){
             blockName = "paint red";
-            paintSelected = true;
+            isBlockSelected = true;
         }
-        if(x > paintGreen.getX() && x < paintGreen.getX()+75 && y > paintGreen.getY() && y < paintGreen.getX()+25){
+        if(x > paintGreen.getX() && x < paintGreen.getX()+95 && y > paintGreen.getY() && y < paintGreen.getX()+35){
             blockName = "paint green";
-            paintSelected = true;
+            isBlockSelected = true;
         }
-        if(x > paintBlue.getX() && x < paintBlue.getX()+75 && y > paintBlue.getY() && y < paintBlue.getX()+25){
+        if(x > paintBlue.getX() && x < paintBlue.getX()+95 && y > paintBlue.getY() && y < paintBlue.getX()+35){
             blockName = "paint blue";
-            paintSelected = true;
+            isBlockSelected = true;
         }
-
-
+        if(x > repeat.getX() && x < repeat.getX()+95 && y > repeat.getY() && y < repeat.getX()+35){
+            blockName = "loop until wall";
+            isBlockSelected = true;
+        }
 
 
         for(Block block: d.getProgram()){
@@ -110,24 +112,13 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
         Datasource d = Datasource.getInstance();
 
         if(x2 < 500){
-            if(moveSelected){
+            if(isBlockSelected){
                 Block addedBlock = new Block(blockName, x2, y2);
                 d.addBlock(addedBlock);
-                moveSelected = false;
+                isBlockSelected = false;
                 worldPanel.repaint();
             }
-            if(turnSelected){
-                Block addedBlock = new Block(blockName, x2, y2);
-                d.addBlock(addedBlock);
-                turnSelected = false;
-                worldPanel.repaint();
-            }
-            if(paintSelected){
-                Block addedBlock = new Block(blockName, x2, y2);
-                d.addBlock(addedBlock);
-                paintSelected = false;
-                worldPanel.repaint();
-            }
+
             if(rect.contains(x2,y2) && selectedBlock !=null){
                 d.removeBlock(selectedBlock);
             }
