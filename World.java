@@ -52,7 +52,15 @@ public class World{
             else if(blockName.equals("paint blue")) {
                 paintCell(Color.BLUE);
             }
+            else if(blockName.equals("loop")) {
+
+            }
         }   
+    }
+
+    public void changeLevel(int level) {
+        this.level = level;
+        resetCellList();
     }
 
     public void clearProgram() {

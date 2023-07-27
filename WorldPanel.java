@@ -29,4 +29,9 @@ public class WorldPanel extends JPanel{
         w.resetCellList();
     }
 
+    public void changeLevel(int level) {
+        w.changeLevel(level);
+        repaint();
+    }
+
 }

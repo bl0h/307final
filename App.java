@@ -47,15 +47,20 @@ public class App extends JFrame implements ActionListener{
 
 
         for (int i = 1; i <= 15; i++){
+            final int levelInt = i;
             JButton button = new JButton("" + i);
             button.setPreferredSize(new Dimension(50, 40));
             button.setFont(button.getFont().deriveFont(16f));
+            button.addActionListener(e -> worldPanel.changeLevel(levelInt));
             topPanel.add(button);
 
             if(i == 15){
                 button.setBorder(new EmptyBorder(0, 0, 0, 100));
             }
         }
+
+
+
         JButton directionButton = new JButton("Directions");
         directionButton.setFont(directionButton.getFont().deriveFont(20f));
         directionButton.setPreferredSize(new Dimension(120, 70));
