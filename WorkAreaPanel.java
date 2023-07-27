@@ -1,37 +1,28 @@
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.io.File;
 import java.awt.event.MouseEvent;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.awt.image.BufferedImage;
 import java.awt.*;
 import javax.swing.border.LineBorder;
 
 public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionListener{
 
-    WorldPanel worldPanel;
+    private int x, y, x2, y2;
+    private Rectangle rect = new Rectangle(25, 620, 50, 60);
+    private boolean moveSelected, turnSelected, paintSelected;
 
+    WorldPanel worldPanel;
     Block move = new Block("move", 600, 100);
 	Block turn = new Block("turn", 600, 200);
 	Block paint = new Block("paint", 600, 300);
-
-    private int x, y, x2, y2;
+    Block selectedBlock = null;
     String blockName = "";
-    private boolean moveSelected, turnSelected, paintSelected;
 
 
     public WorkAreaPanel(WorldPanel worldPanel){
         addMouseListener(this);
         addMouseMotionListener(this);
         this.worldPanel = worldPanel;
-
-        
-
-
-
 
     }
 
@@ -47,6 +38,12 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
         g.setColor(Color.LIGHT_GRAY);
         g.fillRect(550, 0, 250, 700);
 
+        g.setColor(Color.GRAY);
+        g.fillRect(rect.x, rect.y, rect.width, rect.height);
+
+        g.setColor(Color.BLACK);
+        g.fillOval(25,610,50,20);
+
         move.draw(g);
 		turn.draw(g);
 		paint.draw(g);
@@ -60,6 +57,7 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
 
     @Override
 	public void mousePressed(MouseEvent e) {
+        Datasource d = Datasource.getInstance();
         x = e.getX();
         y = e.getY();  
 
@@ -77,6 +75,15 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
             blockName = "paint";
             paintSelected = true;
         }
+
+        for(Block block: d.getProgram()){
+                if(block.contains(x,y)){
+                    System.out.println("shit");
+                    selectedBlock = block;
+                }
+                else 
+                    selectedBlock = null;
+            }
 	}
 
 	
@@ -85,27 +92,30 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
         x2= e.getX();
         y2 = e.getY();
 
+        Datasource d = Datasource.getInstance();
+
         if(x2 < 500){
             if(moveSelected){
                 Block addedBlock = new Block(blockName, x2, y2);
-                Datasource d = Datasource.getInstance();
                 d.addBlock(addedBlock);
                 moveSelected = false;
                 worldPanel.repaint();
             }
             if(turnSelected){
                 Block addedBlock = new Block(blockName, x2, y2);
-                Datasource d = Datasource.getInstance();
                 d.addBlock(addedBlock);
                 turnSelected = false;
                 worldPanel.repaint();
             }
             if(paintSelected){
                 Block addedBlock = new Block(blockName, x2, y2);
-                Datasource d = Datasource.getInstance();
                 d.addBlock(addedBlock);
                 paintSelected = false;
                 worldPanel.repaint();
+            }
+            if(rect.contains(x2,y2) && selectedBlock !=null){
+                System.out.println("yes");
+                d.removeBlock(selectedBlock);
             }
         }
 		repaint();

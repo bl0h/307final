@@ -31,6 +31,10 @@ public class Datasource {
         this.program.add(b);
     }
 
+    public void removeBlock(Block b){
+        this.program.remove(b);
+    }
+
     public void clearProgram(){
         this.program.removeAll(this.program);
     }

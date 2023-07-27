@@ -31,6 +31,11 @@ public class Block{
         return this.text;
     }
 
+    public boolean contains(int mouseX, int mouseY) {
+        return mouseX >= this.x && mouseX <= this.x + 75 &&
+               mouseY >= this.y && mouseY <= this.y + 25;
+    }
+
     public void draw(Graphics g){
         g.setColor(Color.BLACK);
         g.setFont(new Font("Arial", Font.PLAIN, 14));
