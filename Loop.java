@@ -1,13 +1,6 @@
-public class Loop extends BlockDecorator{
+public class Loop{
 
-    private int loops;
+    private int totalLoops;
+    private int loopCounter;
 
-    public Loop(Block decoratedBlock){
-        super(decoratedBlock);
-    }
-
-    
-
-
-    
 }

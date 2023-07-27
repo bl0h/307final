@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Block extends ParentBlock{
+public class Block{
 
     private String text;
     private int x;
