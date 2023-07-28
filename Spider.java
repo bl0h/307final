@@ -60,6 +60,7 @@ public class Spider {
     }
 
     public int move(){
+        System.out.println(rows);
         if(this.direction == "north"){
             this.y -= 80;
             this.cellId -= this.rows;

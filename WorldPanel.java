@@ -43,20 +43,18 @@ public class WorldPanel extends JPanel{
         else if(level == 7 || level == 8 || level == 10) {
             Random random = new Random();
             matrixSize = random.nextInt(5) + 3;
-            this.w.setSpiderCols(matrixSize);
-            this.w.setSpiderRows(matrixSize);
             this.w.setSpiderPosition(0, 0);
             this.w.setSpiderDirection("east");
         }
         else if(level == 9) {
             Random random = new Random();
             matrixSize = random.nextInt(5) + 3;
-            this.w.setSpiderCols(matrixSize);
-            this.w.setSpiderRows(matrixSize);
             this.w.setSpiderPosition(0, 0);
             this.w.setSpiderDirection("south");
         }
 
+        this.w.setSpiderCols(matrixSize);
+        this.w.setSpiderRows(matrixSize);
         this.w.setMatrixSize(matrixSize, matrixSize);
         w.changeLevel(level);
         repaint();
