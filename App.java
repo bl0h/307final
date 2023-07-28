@@ -93,9 +93,15 @@ public class App extends JFrame implements ActionListener{
         playButton.setFont(playButton.getFont().deriveFont(20f));
         playButton.setBackground(Color.GREEN);
         playButton.setOpaque(true);
-        playButton.addActionListener(e -> worldPanel.applySpiderCommands());
-        playButton.addActionListener(e -> worldPanel.repaint());
-        
+        playButton.addActionListener(e -> {
+            worldPanel.applySpiderCommands();
+            worldPanel.repaint();
+            if(worldPanel.grade() == true){
+                levelCompletedPopup();
+            }
+            worldPanel.repaint();
+            });
+
 
         JButton resetButton = new JButton("Reset");
         resetButton.setFont(resetButton.getFont().deriveFont(20f));
@@ -111,30 +117,6 @@ public class App extends JFrame implements ActionListener{
         mainPanel.add(worldPanel);
         mainPanel.add(buttonPanel);
         mainPanel.add(workAreaPanel);
-
-        /* 
-
-        try{
-        File imageFile = new File("trashcan.png");
-        BufferedImage originalImage = ImageIO.read(imageFile);
-
-        int newWidth = 100;
-        int newHeight = 100;
-        Image resizedImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
-
-        ImageIcon imageIcon = new ImageIcon(resizedImage);
-        JLabel trashLabel = new JLabel(imageIcon);
-
-        JPanel trashPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        trashPanel.setBackground(Color.WHITE);
-        trashPanel.add(trashLabel);
-        workAreaPanel.add(trashPanel, BorderLayout.SOUTH);
-        }
-
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        */
         
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(topPanel, BorderLayout.NORTH);
@@ -167,6 +149,33 @@ public class App extends JFrame implements ActionListener{
             });
             popupDialog.add(closeButton, BorderLayout.SOUTH);
             popupDialog.setSize(400, 300);
+            popupDialog.setLocationRelativeTo(this);
+            popupDialog.setVisible(true);
+        }
+
+        private void levelCompletedPopup() {
+            String text = "Congrats!"
+            + " Ready for the next level?";
+
+            JDialog popupDialog = new JDialog(this, "Level Completed", true);
+            popupDialog.setLayout(new BorderLayout());
+
+            JTextArea content = new JTextArea(text);
+            content.setFont(content.getFont().deriveFont(20f));
+            content.setLineWrap(true);
+            content.setWrapStyleWord(true);
+            popupDialog.add(content, BorderLayout.CENTER);
+
+            JButton nextButton = new JButton("next level");
+            nextButton.addActionListener(e -> {
+                popupDialog.dispose();
+                worldPanel.nextLevel();
+                worldPanel.clearProgram();
+                worldPanel.resetCellList(); 
+                worldPanel.repaint();
+            });
+            popupDialog.add(nextButton, BorderLayout.SOUTH);
+            popupDialog.setSize(300, 200);
             popupDialog.setLocationRelativeTo(this);
             popupDialog.setVisible(true);
         }

@@ -122,7 +122,6 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
         if(x2 < 500){
 
             if(isLoopSelected){
-                System.out.println("creating loop");
                 Loop addedLoop = new Loop(x2, y2, blockName);
                 d.addBlock(addedLoop);
                 isLoopSelected = false;
@@ -130,7 +129,6 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
 
             else if(isBlockSelected){
                 Block addedBlock = new Block(blockName, x2, y2);
-                System.out.println("creating block");
 
                 for (Block block : d.getProgram()) {
                     if(block instanceof Loop){

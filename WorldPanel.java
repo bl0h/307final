@@ -34,4 +34,13 @@ public class WorldPanel extends JPanel{
         repaint();
     }
 
+    public void nextLevel(){
+        w.changeLevel(w.getLevel() + 1);
+        repaint();
+    }
+
+    public boolean grade(){
+        return w.grade();
+    }
+
 }

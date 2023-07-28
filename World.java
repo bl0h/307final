@@ -144,6 +144,10 @@ public class World{
         }
         return true;
     }
+
+    public int getLevel(){
+        return this.level;
+    }
     
 
 }
