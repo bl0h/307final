@@ -46,7 +46,7 @@ public class Spider {
         y += 80 * row;
         this.x = x;
         this.y = y;
-        this.cellId = (row * 5) + col;
+        this.cellId = (row * this.rows) + col;
     }
 
     public void turn(){
