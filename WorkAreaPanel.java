@@ -116,34 +116,33 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
 	public void mouseReleased(MouseEvent e) {
         x2= e.getX();
         y2 = e.getY();
-
+        int added = 0;
         Datasource d = Datasource.getInstance();
 
         if(x2 < 500){
             if(isBlockSelected){
                 Block addedBlock = new Block(blockName, x2, y2);
-                d.addBlock(addedBlock);
 
                 for (Block block : d.getProgram()) {
                     if(block instanceof Loop){
                         Loop l = (Loop)block;
                         if(l.contains(x2,y2)){
-                            System.out.println("shit");
-                            l.addBlock(selectedBlock);
+                            l.addBlock(addedBlock);
+                            added = 1;
                             break;
                         }
                     }
-                
+                }
+                if(added == 0){
+                    d.addBlock(addedBlock);
                 }
                 isBlockSelected = false;
-                worldPanel.repaint();
             }
 
             if(isLoopSelected){
                 Loop addedLoop = new Loop(x2, y2, blockName);
                 d.addBlock(addedLoop);
                 isLoopSelected = false;
-                worldPanel.repaint();
             }
 
             if(rect.contains(x2,y2) && selectedBlock !=null){
@@ -153,14 +152,12 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
             
 
         }
+        worldPanel.repaint();
 		repaint();
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-        x2= e.getX();
-        y2 = e.getY();
-		repaint();
 	}
 	
 	@Override

@@ -38,7 +38,6 @@ public class Spider {
         int current = Arrays.asList(this.s).indexOf(this.direction);
         int index = (current + 1) % 4;
         this.direction = s[index];
-        System.out.println(this.direction);
     }
 
     public void setDirection(String s){

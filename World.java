@@ -32,7 +32,8 @@ public class World{
 
     public void applySpiderCommands() {
         Datasource d = Datasource.getInstance();
-        LinkedList<Block> program = d.getProgram();        
+        LinkedList<Block> program = d.getProgram();      
+
 
         for(Block block : program) {
             String blockName = block.getText();
@@ -52,7 +53,34 @@ public class World{
             else if(blockName.equals("paint blue")) {
                 paintCell(Color.BLUE);
             }
-            else if(blockName.equals("loop")) {
+            else if(block instanceof Loop) {
+                Loop l = (Loop)block; 
+                LinkedList<Block> loopBlocks = l.getBlockList();
+                int hitWall = 0;
+                while(true){ 
+                    for(Block loopedBlock :loopBlocks){
+                        String name = loopedBlock.getText();
+                        if(name.equals("move")) {
+                            hitWall = spider.move();
+                            if(hitWall == -1)
+                                break;
+                        }
+                        else if(name.equals("turn")) {
+                            spider.turn();
+                        }
+                        else if(name.equals("paint red")) {
+                            paintCell(Color.RED);
+                        }
+                        else if(name.equals("paint green")) {
+                            paintCell(Color.GREEN);
+                        }
+                        else if(name.equals("paint blue")) {
+                            paintCell(Color.BLUE);
+                        }
+                    }
+                    if(hitWall == -1)
+                        break;
+                }
 
             }
         }   

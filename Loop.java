@@ -42,6 +42,9 @@ public class Loop extends Block{
         int textY = super.getY() + (35 - textHeight) / 2 + fontMetrics.getAscent();
         g.setColor(Color.BLACK);
         g.drawString(super.getText(), textX, textY);
+        for (Block b: this.blockList){
+            b.draw(g);
+        }
     }
 
 }
