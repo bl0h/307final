@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.LinkedList;
+import java.util.Random;
 
 public class World{
     private int numRows;
@@ -9,10 +10,12 @@ public class World{
     private Spider spider;
     private int level;
     private ProblemHelper problemHelper;
+    private int matrixSize;
 
     public World(int numRows, int numCols) {
         this.numRows = numRows;
         this.numCols = numCols;
+        this.matrixSize = numRows;
         this.cellSize = 80;
         this.spider = new Spider(numRows, numCols);
         this.problemHelper = new ProblemHelper(this.spider);
@@ -20,6 +23,7 @@ public class World{
     
         Datasource d = Datasource.getInstance();
         d.setCellList(problemHelper.getLevel(this.level)); //getLevel0 returns level 0's cell list;
+        problemHelper.setWorld(this);
     }
 
     public int getNumRows() {
@@ -28,6 +32,39 @@ public class World{
 
     public int getNumCols() {
         return numCols;
+    }
+
+    public void setSpider(Spider spider) {
+        this.spider = spider;
+    }
+
+    public void setSpiderCols(int cols) {
+        this.spider.setCols(cols);
+    }
+
+    public void setSpiderRows(int rows) {
+        this.spider.setRows(rows);
+    }
+
+    public int getSpiderCols() {
+        return this.spider.getCols();
+    }
+
+    public void setSpiderDirection(String s) {
+        this.spider.setDirection(s);;
+    }
+
+    public void setSpiderPosition(int row, int col) {
+        this.spider.setPosition(row, col);
+    }
+
+    public void setMatrixSize(int numRows, int numCols) {
+        this.numRows = numRows;
+        this.numCols = numCols;
+    }
+
+    public int getMatrixSize() {
+        return matrixSize;
     }
 
     public void applySpiderCommands() {

@@ -80,7 +80,7 @@ public class App extends JFrame implements ActionListener{
         JPanel mainPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         mainPanel.setBackground(Color.WHITE);
 
-        worldPanel = new WorldPanel();
+        worldPanel = new WorldPanel(5, 5);
         workAreaPanel = new WorkAreaPanel(worldPanel);
 
         JPanel buttonPanel = new JPanel();
