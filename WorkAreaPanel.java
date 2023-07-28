@@ -120,7 +120,6 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
         Datasource d = Datasource.getInstance();
 
         if(x2 < 500){
-
             if(isLoopSelected){
                 Loop addedLoop = new Loop(x2, y2, blockName);
                 d.addBlock(addedLoop);
@@ -131,6 +130,10 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
                 Block addedBlock = new Block(blockName, x2, y2);
 
                 for (Block block : d.getProgram()) {
+                    if(x2 > block.getX() && x2 < block.getX()+85 && y2 > block.getY()+35 && y2 < block.getY()+ 60){
+                        addedBlock.setX(block.getX());
+                        addedBlock.setY(block.getY() +35);
+                    }
                     if(block instanceof Loop){
                         Loop l = (Loop)block;
                         if(l.contains(x2,y2)){
