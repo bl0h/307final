@@ -8,11 +8,15 @@ public class Spider {
     private int cellId;
     private String direction; //direction is north, east, south, west
     private String s[] = {"north", "east", "south", "west"};
+    private int rows;
+    private int cols;
 
-    public Spider(){
+    public Spider(int rows, int cols){
         this.x = 25;
         this.y = 25;
         this.direction = "north";
+        this.rows = rows;
+        this.cols = cols;
     }
 
     public int getX(){return this.x;}
@@ -50,14 +54,14 @@ public class Spider {
             this.cellId -= 5;
             if (this.y < 0){
                 this.y += 80;
-                this.cellId += 5;
+                this.cellId += this.rows;
                 return -1;
             }
         }
         if(this.direction == "east"){
             this.x += 80;
             this.cellId ++;
-            if (this.x > 400){
+            if (this.x > 80 * this.cols){
                 this.x -= 80;
                 this.cellId --;
                 return -1;
@@ -66,9 +70,9 @@ public class Spider {
         if(this.direction == "south"){
             this.y += 80;
             this.cellId += 5;
-            if (this.y > 400){
+            if (this.y > 80 * this.rows){
                 this.y -= 80;
-                this.cellId -= 5;
+                this.cellId -= this.rows;
                 return -1;
             }
         }
