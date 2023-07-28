@@ -46,7 +46,7 @@ public class App extends JFrame implements ActionListener{
         topPanel.add(level);
 
 
-        for (int i = 1; i <= 15; i++){
+        for (int i = 1; i <= 10; i++){
             final int levelInt = i;
             JButton button = new JButton("" + i);
             button.setPreferredSize(new Dimension(50, 40));

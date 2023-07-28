@@ -62,7 +62,7 @@ public class Spider {
     public int move(){
         if(this.direction == "north"){
             this.y -= 80;
-            this.cellId -= 5;
+            this.cellId -= this.rows;
             if (this.y < 0){
                 this.y += 80;
                 this.cellId += this.rows;
@@ -80,7 +80,7 @@ public class Spider {
         }
         if(this.direction == "south"){
             this.y += 80;
-            this.cellId += 5;
+            this.cellId += this.rows;
             if (this.y > 80 * this.rows){
                 this.y -= 80;
                 this.cellId -= this.rows;

@@ -36,7 +36,6 @@ public class WorldPanel extends JPanel{
     }
 
     public void changeLevel(int level) {
-        //w.changeLevel(level);
         int matrixSize = 5;
         if(level >= 1 && level <= 6) {
             matrixSize = 5;
@@ -58,8 +57,8 @@ public class WorldPanel extends JPanel{
             this.w.setSpiderDirection("south");
         }
 
-        w.changeLevel(level);
         this.w.setMatrixSize(matrixSize, matrixSize);
+        w.changeLevel(level);
         repaint();
     }
 

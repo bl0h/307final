@@ -20,10 +20,10 @@ public class World{
         this.spider = new Spider(numRows, numCols);
         this.problemHelper = new ProblemHelper(this.spider);
         this.level = 1;
-    
+        problemHelper.setWorld(this);
         Datasource d = Datasource.getInstance();
         d.setCellList(problemHelper.getLevel(this.level)); //getLevel0 returns level 0's cell list;
-        problemHelper.setWorld(this);
+       
     }
 
     public int getNumRows() {

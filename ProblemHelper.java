@@ -15,10 +15,10 @@ public class ProblemHelper {
 
     public LinkedList<Cell> getLevel(int level) {
         LinkedList<Cell> cells = new LinkedList<Cell>();
-        for(int i = 0; i < 25; i++){
-            cells.add(new Cell(i / 5, i % 5, Color.BLACK));
+        int matrixSize = world.getNumCols();
+        for(int i = 0; i < matrixSize * matrixSize; i++){
+            cells.add(new Cell(i / matrixSize, i % matrixSize, Color.BLACK));
         }   
-
         if(level == 1){
             spider.setDirection("north");
             Cell cell = cells.get(6);
@@ -29,6 +29,7 @@ public class ProblemHelper {
             cell.setDiamond(true, Color.GREEN);
             spider.setPosition(3, 1);
             cell.setSpider(true);
+            
         }
         else if(level == 2) {
             spider.setDirection("north");
@@ -91,39 +92,45 @@ public class ProblemHelper {
 
         }
         else if(level == 7) {
+            spider.setDirection("east");
+            spider.setPosition(0, 0);
             Cell cell = cells.get(1);
             cell.setDiamond(true, Color.RED);
             
         }
         else if(level == 8) {
-            int matrixSize = world.getSpiderCols();
+            spider.setDirection("east");
+            spider.setPosition(0, 0);
+            for(int i = 1; i < matrixSize; i++) {
+                Cell cell = cells.get(i);
+                cell.setDiamond(true, Color.BLUE);
+            }
+            Cell cell = cells.get(cells.size() - 1);
+            cell.setDiamond(true, Color.RED);
         }
-        else if(level == 9) {
-            int matrixSize = world.getSpiderCols();
-
+        else if(level == 9) { 
+            spider.setDirection("south");
+            spider.setPosition(0, 0);          
             for (int i = 0; i < matrixSize; i++) {
                 Cell cell = cells.get(i * matrixSize + (matrixSize - 1 - i));
-                cell.setDiamond(true, Color.RED);
+                if(i == 0 || i == matrixSize - 1) {
+                    cell.setDiamond(true, Color.RED);
+                } else {
+                    cell.setDiamond(true, Color.BLUE);
+                }
+                
             }
-
         }
         else if(level == 10) {
-            int matrixSize = world.getMatrixSize();
-            int row = 0;
-            int col = 0;
+            spider.setDirection("east");
+            spider.setPosition(0, 0);
+            Cell cell = cells.get(1);
+            cell.setDiamond(true, Color.RED);
+            cell = cells.get(matrixSize);
+            cell.setDiamond(true, Color.RED);
+            cell = cells.get(matrixSize + 1);
+            cell.setDiamond(true, Color.RED);
 
-            int[] dx = { 0, 1, 1 };
-            int[] dy = { 1, 0, 1 };
-
-            for (int i = 0; i < dx.length; i++) {
-                int newRow = row + dx[i];
-                int newCol = col + dy[i];
-
-                if (newRow >= 0 && newRow < matrixSize && newCol >= 0 && newCol < matrixSize) {
-                    Cell cell = cells.get(newRow * matrixSize + newCol);
-                    cell.setDiamond(true, Color.RED);
-                }
-            }
 
         }
         return cells;
