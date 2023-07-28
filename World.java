@@ -94,6 +94,7 @@ public class World{
                 Loop l = (Loop)block; 
                 LinkedList<Block> loopBlocks = l.getBlockList();
                 int hitWall = 0;
+                int counter = 0;
                 while(true){ 
                     for(Block loopedBlock :loopBlocks){
                         String name = loopedBlock.getText();
@@ -117,6 +118,12 @@ public class World{
                     }
                     if(hitWall == -1)
                         break;
+                    if(counter == 40){
+                        System.out.println("never reaches wall");
+                        break;
+                        }
+                    counter++;
+                    
                 }
 
             }

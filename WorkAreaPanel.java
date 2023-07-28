@@ -94,7 +94,7 @@ public class WorkAreaPanel extends JPanel implements MouseListener, MouseMotionL
             isBlockSelected = true;
             selectedBlock = paintBlue;
         }
-        else if(x > repeat.getX() && x < repeat.getX()+95 && y > repeat.getY() && y < repeat.getY()+35){
+        else if(x > repeat.getX() && x < repeat.getX()+105 && y > repeat.getY() && y < repeat.getY()+80){
             blockName = "loop until wall";
             isLoopSelected = true;
             selectedBlock = repeat;
