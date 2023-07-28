@@ -9,6 +9,7 @@ public class Loop extends Block{
 
     public Loop(int x, int y, String text){
         super(text, x, y);
+        System.out.println("loop created");
     }
 
     public void addBlock(Block b){

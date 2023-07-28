@@ -9,8 +9,7 @@ public class Block{
         this.text = text;
         this.x = x;
         this.y = y;
-        
-        
+        System.out.println("block created");
     }
 
     public void setX(int x){
