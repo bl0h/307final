@@ -19,6 +19,17 @@ public class Spider {
         this.cols = cols;
     }
 
+    public void setRows(int rows) {
+        this.rows = rows;
+    }
+
+    public void setCols(int cols) {
+        this.cols = cols;
+    }
+    public int getCols() {
+        return this.cols;
+    }
+
     public int getX(){return this.x;}
 
     public int getY(){return this.y;}

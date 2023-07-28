@@ -1,20 +1,26 @@
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import java.awt.*;
+import java.util.Random;
 public class WorldPanel extends JPanel{
-    World w;
+    private World w;
 
-    public WorldPanel(){
-        this.w = new World(5,5);
+    public WorldPanel(int numRows, int numCols){
+        this.w = new World(numRows,numCols);
     }
 
 
     @Override
     public void paintComponent(Graphics g){
-        setBackground(Color.BLACK);
-        setPreferredSize(new Dimension(400, 400));
         super.paintComponent(g);
+        g.setColor(Color.BLACK);
+        g.fillRect(0, 0, getWidth(), getHeight());
         w.draw(g);
+        int cellSize = 80;
+        int gridWidth = w.getNumCols() * cellSize;
+        int gridHeight = w.getNumRows() * cellSize;
+        setPreferredSize(new Dimension(gridWidth, gridHeight));
+        revalidate();
     }
 
     public void applySpiderCommands(){
@@ -30,7 +36,30 @@ public class WorldPanel extends JPanel{
     }
 
     public void changeLevel(int level) {
+        //w.changeLevel(level);
+        int matrixSize = 5;
+        if(level >= 1 && level <= 6) {
+            matrixSize = 5;
+        } 
+        else if(level == 7 || level == 8 || level == 10) {
+            Random random = new Random();
+            matrixSize = random.nextInt(5) + 3;
+            this.w.setSpiderCols(matrixSize);
+            this.w.setSpiderRows(matrixSize);
+            this.w.setSpiderPosition(0, 0);
+            this.w.setSpiderDirection("east");
+        }
+        else if(level == 9) {
+            Random random = new Random();
+            matrixSize = random.nextInt(5) + 3;
+            this.w.setSpiderCols(matrixSize);
+            this.w.setSpiderRows(matrixSize);
+            this.w.setSpiderPosition(0, 0);
+            this.w.setSpiderDirection("south");
+        }
+
         w.changeLevel(level);
+        this.w.setMatrixSize(matrixSize, matrixSize);
         repaint();
     }
 
